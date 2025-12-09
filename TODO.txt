@@ -1,0 +1,8 @@
+Travail demandé :
+Vous êtes amené à développer une application Spring Boot selon l'architecture Micro-service. Cette application permettra la gestion d'au minimum 3 entités (de votre choix mais différentes de celles des TPs). Chaque entité sera gérée dans un micro-service à part.
+Vous devez implémenter au moins un exemple de communication synchrone entre 2 micro-services.
+L'application doit appliquer un exemple de pattern DTO entre la couche Présentation et la couche Métier.
+Vous devez choisir entre :
+- Sécuriser l'application ms avec JWT en implémentant la sécurité dans un micro-service
+- Ajouter une communication asynchrone entre micro-services (via Kafk).
+Indications :

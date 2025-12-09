@@ -25,7 +25,7 @@ public class CommandeServiceApplication {
 		SpringApplication.run(CommandeServiceApplication.class, args);
 	}
 
-	//@Bean
+	@Bean
 	CommandLineRunner commandLineRunner(
 			CommandeRepository commandeRepository,
 			ProductItemRepository productItemRepository,

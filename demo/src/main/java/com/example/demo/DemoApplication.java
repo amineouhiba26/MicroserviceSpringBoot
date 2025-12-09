@@ -14,7 +14,7 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	//@Bean
+	@Bean
 	CommandLineRunner initClients(ClientRepository clientRepository) {
 		return args -> {
 			// Vérifier si des clients existent déjà
