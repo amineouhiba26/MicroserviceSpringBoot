@@ -26,6 +26,7 @@ public class CommandeServiceApplication {
 	}
 
 	@Bean
+	@org.springframework.context.annotation.Profile("!test")
 	CommandLineRunner commandLineRunner(
 			CommandeRepository commandeRepository,
 			ProductItemRepository productItemRepository,

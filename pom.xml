@@ -7,11 +7,25 @@
     <groupId>org.example</groupId>
     <artifactId>tpmicroservice</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <name>Microservice System</name>
+
+    <modules>
+        <module>api-gateway</module>
+        <module>auth-service</module>
+        <module>client-service</module>
+        <module>commande-service</module>
+        <module>discovery-service</module>
+        <module>produit</module>
+    </modules>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <spring-boot.version>3.3.5</spring-boot.version>
+        <spring-cloud.version>2023.0.3</spring-cloud.version>
     </properties>
 
 </project>
