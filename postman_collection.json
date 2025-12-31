@@ -357,6 +357,77 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get Order by ID",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8887/commande-service/commandes/1",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8887",
+							"path": [
+								"commande-service",
+								"commandes",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "{{jwt_token}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idClient\": 1,\n    \"productItems\": [\n        {\n            \"idProduit\": 1,\n            \"quantite\": 2\n        },\n        {\n            \"idProduit\": 2,\n            \"quantite\": 1\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "http://localhost:8887/commande-service/commandes",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8887",
+							"path": [
+								"commande-service",
+								"commandes"
+							]
+						}
+					},
+					"response": []
 				}
 			]
 		}

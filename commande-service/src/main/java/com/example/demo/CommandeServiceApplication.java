@@ -26,7 +26,6 @@ public class CommandeServiceApplication {
 	}
 
 	@Bean
-	@org.springframework.context.annotation.Profile("!test")
 	CommandLineRunner commandLineRunner(
 			CommandeRepository commandeRepository,
 			ProductItemRepository productItemRepository,
@@ -58,7 +57,6 @@ public class CommandeServiceApplication {
 				});
 			});
 
-			System.out.println("Jeu de données de commandes créé avec succès !");
 		};
 	}
 }
