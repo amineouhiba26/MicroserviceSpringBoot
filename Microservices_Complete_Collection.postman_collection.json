@@ -1,0 +1,582 @@
+{
+	"info": {
+		"_postman_id": "microservices-gateway-collection",
+		"name": "Microservices - Complete Gateway Collection",
+		"description": "Complete collection for all microservices endpoints through API Gateway (Port 8887)\n\nAll requests go through the API Gateway for centralized security.\n\n**Security:**\n- Public endpoints: No authentication required\n- Protected endpoints: Require JWT token with ADMIN role\n\n**Setup:**\n1. Run 'Login - Get JWT Token' to authenticate\n2. The token will be automatically saved to collection variable\n3. All protected endpoints will use this token automatically",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "1. Authentication (Public)",
+			"item": [
+				{
+					"name": "Login - Get JWT Token",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Save the JWT token to collection variable",
+									"if (pm.response.code === 200) {",
+									"    var token = pm.response.text();",
+									"    pm.collectionVariables.set(\"jwt_token\", token);",
+									"    console.log(\"JWT Token saved successfully!\");",
+									"    ",
+									"    // Decode and display token info",
+									"    try {",
+									"        var base64Url = token.split('.')[1];",
+									"        var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');",
+									"        var jsonPayload = decodeURIComponent(atob(base64).split('').map(function(c) {",
+									"            return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);",
+									"        }).join(''));",
+									"        var payload = JSON.parse(jsonPayload);",
+									"        console.log(\"User: \" + payload.sub);",
+									"        console.log(\"Roles: \" + JSON.stringify(payload.roles));",
+									"    } catch (e) {",
+									"        console.log(\"Could not decode token\");",
+									"    }",
+									"} else {",
+									"    console.log(\"Login failed\");",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"123\"\n}"
+						},
+						"url": {
+							"raw": "{{gateway_url}}/auth-service/api/auth/login",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"auth-service",
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": "**Public Endpoint** - No authentication required\n\nLogin to get a JWT token. The token will be automatically saved and used for all protected endpoints.\n\nDefault credentials:\n- Username: admin\n- Password: 123\n\nThe response is a JWT token that contains user information and roles."
+					},
+					"response": []
+				}
+			],
+			"description": "Public authentication endpoints that don't require a JWT token."
+		},
+		{
+			"name": "2. User Management (ADMIN Required)",
+			"item": [
+				{
+					"name": "Get All Users",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{gateway_url}}/auth-service/api/auth/users",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"auth-service",
+								"api",
+								"auth",
+								"users"
+							]
+						},
+						"description": "**Protected Endpoint** - Requires JWT with ADMIN role\n\nRetrieve a list of all users in the system.\n\nResponse includes:\n- User ID\n- Username\n- Password (hashed)\n- Assigned roles"
+					},
+					"response": []
+				},
+				{
+					"name": "Create User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"newuser\",\n    \"password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{gateway_url}}/auth-service/api/auth/users",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"auth-service",
+								"api",
+								"auth",
+								"users"
+							]
+						},
+						"description": "**Protected Endpoint** - Requires JWT with ADMIN role\n\nCreate a new user in the system.\n\nRequired fields:\n- username: Unique username\n- password: User password (will be hashed automatically)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Role",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"roleName\": \"USER\"\n}"
+						},
+						"url": {
+							"raw": "{{gateway_url}}/auth-service/api/auth/roles",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"auth-service",
+								"api",
+								"auth",
+								"roles"
+							]
+						},
+						"description": "**Protected Endpoint** - Requires JWT with ADMIN role\n\nCreate a new role in the system.\n\nCommon roles:\n- ADMIN: Full access to all endpoints\n- USER: Limited access\n- MANAGER: Custom access level"
+					},
+					"response": []
+				},
+				{
+					"name": "Assign Role to User",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"newuser\",\n    \"roleName\": \"USER\"\n}"
+						},
+						"url": {
+							"raw": "{{gateway_url}}/auth-service/api/auth/addRoleToUser",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"auth-service",
+								"api",
+								"auth",
+								"addRoleToUser"
+							]
+						},
+						"description": "**Protected Endpoint** - Requires JWT with ADMIN role\n\nAssign a role to an existing user.\n\nRequired fields:\n- username: The user to assign the role to\n- roleName: The role to assign (must exist)"
+					},
+					"response": []
+				}
+			],
+			"description": "User and role management endpoints. All require ADMIN role."
+		},
+		{
+			"name": "3. Client Management (ADMIN Required)",
+			"item": [
+				{
+					"name": "Get All Clients",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{gateway_url}}/client-service/clients",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"client-service",
+								"clients"
+							]
+						},
+						"description": "**Protected Endpoint** - Requires JWT with ADMIN role\n\nRetrieve a list of all clients.\n\nResponse includes:\n- Client ID\n- Client name\n- Email address"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Client by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{gateway_url}}/client-service/clients/1",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"client-service",
+								"clients",
+								"1"
+							]
+						},
+						"description": "**Protected Endpoint** - Requires JWT with ADMIN role\n\nRetrieve details of a specific client by ID.\n\nPath parameter:\n- id: Client ID (e.g., 1, 2, 3)"
+					},
+					"response": []
+				}
+			],
+			"description": "Client management endpoints. All require ADMIN role."
+		},
+		{
+			"name": "4. Product Management (ADMIN Required)",
+			"item": [
+				{
+					"name": "Get All Products",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{gateway_url}}/produit-service/produits",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"produit-service",
+								"produits"
+							]
+						},
+						"description": "**Protected Endpoint** - Requires JWT with ADMIN role\n\nRetrieve a list of all products.\n\nResponse includes:\n- Product ID\n- Product name\n- Price"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Product by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{gateway_url}}/produit-service/produits/1",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"produit-service",
+								"produits",
+								"1"
+							]
+						},
+						"description": "**Protected Endpoint** - Requires JWT with ADMIN role\n\nRetrieve details of a specific product by ID.\n\nPath parameter:\n- id: Product ID (e.g., 1, 2, 3)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Product",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"nom\": \"New Product\",\n    \"prix\": 199.99\n}"
+						},
+						"url": {
+							"raw": "{{gateway_url}}/produit-service/produits",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"produit-service",
+								"produits"
+							]
+						},
+						"description": "**Protected Endpoint** - Requires JWT with ADMIN role\n\nCreate a new product.\n\nRequired fields:\n- nom: Product name\n- prix: Product price (decimal)"
+					},
+					"response": []
+				}
+			],
+			"description": "Product management endpoints. All require ADMIN role."
+		},
+		{
+			"name": "5. Order Management (ADMIN Required)",
+			"item": [
+				{
+					"name": "Get All Orders",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{gateway_url}}/commande-service/commandes",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"commande-service",
+								"commandes"
+							]
+						},
+						"description": "**Protected Endpoint** - Requires JWT with ADMIN role\n\nRetrieve a list of all orders.\n\nResponse includes:\n- Order ID\n- Order date\n- Client ID\n- Product items with quantities and prices"
+					},
+					"response": []
+				},
+				{
+					"name": "Get Order by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{gateway_url}}/commande-service/commandes/1",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"commande-service",
+								"commandes",
+								"1"
+							]
+						},
+						"description": "**Protected Endpoint** - Requires JWT with ADMIN role\n\nRetrieve details of a specific order by ID.\n\nResponse includes full order details with:\n- Client information\n- Product items with full product details\n- Quantities and prices\n\nPath parameter:\n- id: Order ID (e.g., 1, 2, 3)"
+					},
+					"response": []
+				},
+				{
+					"name": "Create Order",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{jwt_token}}",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"idClient\": 1,\n    \"productItems\": [\n        {\n            \"idProduit\": 1,\n            \"quantite\": 2\n        },\n        {\n            \"idProduit\": 2,\n            \"quantite\": 1\n        }\n    ]\n}"
+						},
+						"url": {
+							"raw": "{{gateway_url}}/commande-service/commandes",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"commande-service",
+								"commandes"
+							]
+						},
+						"description": "**Protected Endpoint** - Requires JWT with ADMIN role\n\nCreate a new order.\n\nRequired fields:\n- idClient: ID of the client placing the order\n- productItems: Array of products with quantities\n  - idProduit: Product ID\n  - quantite: Quantity ordered\n\nThe service will automatically:\n- Set the order date to current time\n- Fetch and attach product prices\n- Fetch and attach client details"
+					},
+					"response": []
+				}
+			],
+			"description": "Order (Commande) management endpoints. All require ADMIN role."
+		},
+		{
+			"name": "6. Test & Validation",
+			"item": [
+				{
+					"name": "Test - Access Without Token (401)",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{gateway_url}}/produit-service/produits",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"produit-service",
+								"produits"
+							]
+						},
+						"description": "**Test Case: Unauthorized Access**\n\nThis request intentionally has NO Authorization header.\n\nExpected Result: **401 Unauthorized**\n\nThis validates that the gateway blocks unauthenticated requests."
+					},
+					"response": []
+				},
+				{
+					"name": "Test - Access With Invalid Token (401)",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer invalid-token-here",
+								"type": "text"
+							}
+						],
+						"url": {
+							"raw": "{{gateway_url}}/produit-service/produits",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"produit-service",
+								"produits"
+							]
+						},
+						"description": "**Test Case: Invalid Token**\n\nThis request has an invalid JWT token.\n\nExpected Result: **401 Unauthorized**\n\nThis validates that the gateway properly validates JWT tokens."
+					},
+					"response": []
+				},
+				{
+					"name": "Test - Login Endpoint (Public)",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"username\": \"admin\",\n    \"password\": \"123\"\n}"
+						},
+						"url": {
+							"raw": "{{gateway_url}}/auth-service/api/auth/login",
+							"host": [
+								"{{gateway_url}}"
+							],
+							"path": [
+								"auth-service",
+								"api",
+								"auth",
+								"login"
+							]
+						},
+						"description": "**Test Case: Public Endpoint**\n\nThis request has NO Authorization header.\n\nExpected Result: **200 OK** with JWT token\n\nThis validates that public endpoints are accessible without authentication."
+					},
+					"response": []
+				},
+				{
+					"name": "Discovery Service - Eureka",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "http://localhost:8761",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "8761"
+						},
+						"description": "**Service Registry Check**\n\nAccess the Eureka Dashboard to see all registered services.\n\nExpected services:\n- GATEWAYSERVICE (API Gateway)\n- AUTH-SERVICE\n- CLIENT-SERVICE\n- PRODUIT-SERVICE\n- COMMANDE-SERVICE"
+					},
+					"response": []
+				}
+			],
+			"description": "Test endpoints to validate security and service availability."
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "gateway_url",
+			"value": "http://localhost:8887",
+			"type": "string"
+		},
+		{
+			"key": "jwt_token",
+			"value": "",
+			"type": "string"
+		}
+	]
+}

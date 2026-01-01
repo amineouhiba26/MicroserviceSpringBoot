@@ -1,6 +1,6 @@
 package com.example.demo.controller;
 
-import com.example.demo.produits.Produit;
+import com.example.demo.entities.Produit;
 import com.example.demo.repository.ProduitRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
@@ -12,7 +12,7 @@ import java.util.List;
 public class ProduitController {
     private ProduitRepository produitRepository;
     
-    @GetMapping("/produits")
+    @GetMapping("/produits" )
     public List<Produit> all() {
         return produitRepository.findAll();
     }

@@ -7,12 +7,13 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.Collection;
 
-@Service
+// Note: This class is kept for reference but is no longer active.
+// The UserDetailsService bean is now defined in BeanConfig.java
+// @Service annotation removed to avoid bean conflict
 public class UserDetailsServiceImpl implements UserDetailsService {
     private AccountService accountService;
 

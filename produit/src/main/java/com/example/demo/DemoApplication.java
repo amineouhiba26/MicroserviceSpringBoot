@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.produits.Produit;
+import com.example.demo.entities.Produit;
 import com.example.demo.repository.ProduitRepository;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -14,7 +14,7 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	@Bean
+	//@Bean
 	CommandLineRunner initProduits(ProduitRepository produitRepository) {
 		return args -> {
 			if (produitRepository.count() == 0) {

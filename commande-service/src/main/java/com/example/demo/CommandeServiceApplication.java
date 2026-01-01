@@ -25,7 +25,7 @@ public class CommandeServiceApplication {
 		SpringApplication.run(CommandeServiceApplication.class, args);
 	}
 
-	@Bean
+	//@Bean
 	CommandLineRunner commandLineRunner(
 			CommandeRepository commandeRepository,
 			ProductItemRepository productItemRepository,
@@ -33,30 +33,38 @@ public class CommandeServiceApplication {
 			ClientRestClient clientRestClient
 	) {
 		return args -> {
-			List<Client> clients = clientRestClient.getClients();
-			List<Produit> produits = productRestClient.getProduits();
+			try {
+				System.out.println("🔄 Initializing orders data...");
+				List<Client> clients = clientRestClient.getClients();
+				List<Produit> produits = productRestClient.getProduits();
 
-			if (clients.isEmpty() || produits.isEmpty()) {
-				System.out.println("Aucun client ou produit trouvé. Impossible d'initialiser les commandes.");
-				return;
-			}
+				if (clients.isEmpty() || produits.isEmpty()) {
+					System.out.println("⚠️  Aucun client ou produit trouvé. Impossible d'initialiser les commandes.");
+					return;
+				}
 
-			clients.forEach(client -> {
-				Commande commande = new Commande();
-				commande.setIdClient(client.getId());
-				commande.setDate(new Date());
-				Commande savedCommande = commandeRepository.save(commande);
+				clients.forEach(client -> {
+					Commande commande = new Commande();
+					commande.setIdClient(client.getId());
+					commande.setDate(new Date());
+					Commande savedCommande = commandeRepository.save(commande);
 
-				produits.forEach(produit -> {
-					ProductItem productItem = new ProductItem();
-					productItem.setIdProduit(produit.getId());
-					productItem.setCommande(savedCommande);
-					productItem.setPrix(produit.getPrix()); 
-					productItem.setQuantite(1 + (int) (Math.random() * 10)); 
-					productItemRepository.save(productItem);
+					produits.forEach(produit -> {
+						ProductItem productItem = new ProductItem();
+						productItem.setIdProduit(produit.getId());
+						productItem.setCommande(savedCommande);
+						productItem.setPrix(produit.getPrix()); 
+						productItem.setQuantite(1 + (int) (Math.random() * 10)); 
+						productItemRepository.save(productItem);
+					});
 				});
-			});
-
+				
+				System.out.println("✅ Orders data initialized successfully!");
+			} catch (Exception e) {
+				System.err.println("⚠️  Warning: Could not initialize orders data.");
+				System.err.println("   Reason: " + e.getMessage());
+				System.err.println("   The service will start anyway. Make sure Client and Product services are running.");
+			}
 		};
 	}
 }

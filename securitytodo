@@ -1,0 +1,844 @@
+5.3.1 Définition du Bean PasswordEncoder
+Avant de créer nos utilisateurs, nous devons d’abord dire à Spring comment il doit hacher les
+mots de passe. Pour cela, nous déclarons un Bean de type PasswordEncoder. Vous pouvez ajouter
+cette méthode dans votre classe de configuration des beans (BeanConfig.java) ou, pour simplifier,
+directement dans votre classe d’application principale.
+1 import org . springframework . context . annotation . Bean ;
+2 import org . springframework . security . crypto . bcrypt . BCryptPasswordEncoder ;
+3 import org . springframework . security . crypto . password . PasswordEncoder ;
+4
+5 // ... a l'interieur de votre classe @Configuration ou @SpringBootApplication
+6
+7 @Bean
+8 public PasswordEncoder passwordEncoder () {
+9 // Utilisation de l'algorithme BCrypt , le standard recommande
+10 return new BCryptPasswordEncoder () ;
+11 }
+
+10
+
+Listing 5 – Déclaration du Bean PasswordEncoder
+
+5.3.2 Création des utilisateurs au démarrage
+Maintenant que Spring sait comment obtenir un PasswordEncoder, nous pouvons l’injecter dans
+un CommandLineRunner pour créer nos utilisateurs de test avec des mots de passe sécurisés.
+Ajoutez ce Bean dans votre classe principale. Spring injectera automatiquement le PasswordEncoder
+que nous venons de définir.
+1 @Bean
+2 CommandLineRunner commandLineRunner ( UserRepository userRepository ,
+3 RoleRepository roleRepository ,
+4 PasswordEncoder passwordEncoder ) { // Injection
+du Bean
+5 return args -> {
+6 // Creer les roles s'ils n'existent pas
+7 if ( roleRepository . count () == 0) {
+8 roleRepository . save ( AppRole . builder () . nom (" USER ") . build () ) ;
+9 roleRepository . save ( AppRole . builder () . nom (" ADMIN ") . build () ) ;
+10 }
+11
+12 AppRole roleUser = roleRepository . findById (" USER ") . get () ;
+13 AppRole roleAdmin = roleRepository . findById (" ADMIN ") . get () ;
+14
+15 // Creer les utilisateurs si la base est vide
+16 if ( userRepository . count () == 0) {
+17 // Utilisateur standard
+18 userRepository . save ( AppUser . builder ()
+19 . id ( UUID . randomUUID () . toString () )
+20 . username (" user ")
+21 // Utilisation du PasswordEncoder pour hacher le mot de passe
+22 . password ( passwordEncoder . encode (" 1234 ") )
+23 . email (" user@example .com")
+24 . roles ( List . of ( roleUser ) )
+25 . build () ) ;
+26
+27 // Administrateur
+28 userRepository . save ( AppUser . builder ()
+29 . id ( UUID . randomUUID () . toString () )
+30 . username (" admin ")
+31 . password ( passwordEncoder . encode (" 1234 ") )
+32 . email (" admin@example .com")
+33 // L'admin a les deux roles
+34 . roles ( List . of ( roleUser , roleAdmin ) )
+35 . build () ) ;
+36
+37 System . out . println (" >>> Utilisateurs et Roles initialises !") ;
+38 }
+39 };
+40 }
+
+Listing 6 – Insertion des utilisateurs au démarrage
+5.4 Étape 4 : Configuration Stratégique de la Sécurité
+Après avoir posé les fondations en ajoutant la dépendance Spring Security et en préparant nos
+utilisateurs et leurs rôles, il est temps de bâtir notre stratégie de sécurité. Par défaut, Spring Security
+applique une politique de verrouillage complet ; nous allons donc maintenant définir nos propres règles
+du jeu. C’est ici qu’intervient la classe SecurityConfig, qui agit comme un chef d’orchestre pour définir
+la chaîne de filtres de sécurité (Security Filter Chain). C’est elle qui dictera comment les requêtes sont
+interceptées, validées et autorisées.
+
+11
+
+1 package com . poly . gestioncatalogue . security ;
+2
+3 import lombok . AllArgsConstructor ;
+4 import org . springframework . context . annotation . Bean ;
+5 import org . springframework . context . annotation . Configuration ;
+6 import org . springframework . security . authentication . AuthenticationProvider ;
+7 import org . springframework . security . config . annotation . method . configuration .
+EnableMethodSecurity ;
+8 import org . springframework . security . config . annotation . web . builders . HttpSecurity ;
+9 import org . springframework . security . config . annotation . web . configuration .
+EnableWebSecurity ;
+10 import org . springframework . security . config . http . SessionCreationPolicy ;
+11 import org . springframework . security . web . SecurityFilterChain ;
+12 import org . springframework . security . web . authentication .
+UsernamePasswordAuthenticationFilter ;
+13
+14
+15 @Configuration
+16 @EnableWebSecurity // (A) Active la configuration de sé curit é web de Spring .
+17 @EnableMethodSecurity // (B) Active la sé curit é au niveau des mé thodes (ex:
+@PreAuthorize ).
+18 @AllArgsConstructor
+19 public class SecurityConfig {
+20
+21 private final JwtAuthenticationFilter jwtAuthFilter ;
+22 private final AuthenticationProvider authenticationProvider ;
+23
+24 @Bean
+25 public SecurityFilterChain securityFilterChain ( HttpSecurity http ) throws
+Exception {
+26 return http
+27
+28 . csrf ( csrf -> csrf . disable () )
+29 . sessionManagement ( sess -> sess . sessionCreationPolicy (
+SessionCreationPolicy . STATELESS ) )
+30
+31
+32 . authorizeHttpRequests ( auth -> auth
+33 . requestMatchers ("/ api/ auth /**") . permitAll ()
+34 . anyRequest () . authenticated ()
+35 )
+36
+37 . authenticationProvider ( authenticationProvider )
+38
+39 . addFilterBefore ( jwtAuthFilter , UsernamePasswordAuthenticationFilter .
+class )
+40
+41 . build () ;
+42 }
+43 }
+
+Listing 7 – Classe SecurityConfig.java : la tour de contrôle de la sécurité
+
+Analyse de la Configuration
+La configuration ci-dessus n’est pas une simple liste d’options ; elle raconte une histoire et établit
+une stratégie claire. Décomposons-la en trois actes logiques :
+1. Fondation : Une API REST Stateless. La première décision clé est d’adopter une politique
+sans état.
+— .csrf(csrf -> csrf.disable()) : La protection CSRF repose sur la synchronisation de
+jetons stockés en session. Puisque nous n’utilisons pas de sessions, cette protection devient
+non seulement inutile mais aussi contre-productive.
+
+12
+
+— .sessionManagement(...STATELESS) : Cette ligne est la déclaration formelle de notre ap-
+proche. Nous demandons à Spring Security de ne jamais créer ou utiliser de HttpSession.
+
+Chaque requête doit être atomique et se suffire à elle-même en contenant ses propres infor-
+mations d’authentification (le token JWT).
+
+2. Règles du jeu : Le Contrôle d’Accès. Une fois la nature de notre API établie, nous définis-
+sons qui a le droit d’accéder à quoi.
+
+— .authorizeHttpRequests(...) : Ce bloc est le portier de notre application. Nous adoptons
+une approche sécurisée par défaut : tout est protégé (.anyRequest().authenticated())
+sauf ce qui est explicitement autorisé.
+— .requestMatchers("/api/auth/**").permitAll() : Nous créons une "brèche" contrôlée
+et publique pour permettre aux utilisateurs de s’enregistrer et de se connecter, processus
+nécessaires pour obtenir le précieux token JWT.
+
+3. Mécanique : Intégration de notre logique JWT. C’est ici que nous connectons nos com-
+posants personnalisés à la mécanique interne de Spring Security.
+
+— .authenticationProvider(...) : Nous indiquons à Spring Security quel fournisseur utili-
+ser pour traiter une demande d’authentification (par exemple, lors d’un appel à /api/auth/login).
+
+C’est lui qui sait comment valider un couple utilisateur/mot de passe contre notre base de
+données.
+— .addFilterBefore(jwtAuthFilter, ...) : C’est l’étape la plus cruciale pour JWT. Nous
+insérons notre filtre jwtAuthFilter avant le filtre de base qui gère l’authentification par
+formulaire. Ainsi, pour chaque requête entrante sur une route protégée, notre filtre a la
+priorité. Il extraira le token de l’en-tête Authorization, le validera et, en cas de succès,
+chargera l’identité de l’utilisateur dans le contexte de sécurité, rendant la requête authentifiée
+pour la suite du traitement.
+5.5 Étape 4.1 : Configuration des Beans de Sécurité (BeanConfig.java)
+Pour garder notre configuration principale (SecurityConfig) propre et focalisée sur la chaîne de
+filtres, nous déplaçons la création de tous les "outils" (les Beans) dont Spring Security a besoin dans
+une classe dédiée. Cette classe, annotée avec @Configuration, agit comme une usine qui produit et
+configure les composants essentiels de notre logique d’authentification.
+L’annotation @AllArgsConstructor de Lombok nous permet d’injecter facilement le UserRepository
+dont nous aurons besoin pour accéder à nos données utilisateur.
+5.5.1 Le UserDetailsService : La carte d’identité de l’utilisateur
+Ce Bean a une mission unique et cruciale : être le pont entre notre base de données (avec nos entités
+AppUser et AppRole) et le monde de Spring Security (qui a besoin d’un objet de type UserDetails).
+1 @Bean
+2 public UserDetailsService userDetailsService () {
+3 // On retourne une impl é mentation de l'interface fonctionnelle
+4 return username -> {
+5 // 1. Chercher l'utilisateur dans notre base de donn ées
+6 AppUser appUser = userRepository . findByUsername ( username ) ;
+7 if ( appUser == null ) {
+8 // Si l'utilisateur n'est pas trouv é, on doit lever cette exception
+9 throw new UsernameNotFoundException (" Utilisateur non trouv é") ;
+10 }
+11
+12 // 2. Transformer notre AppUser en UserDetails de Spring Security
+13 return new User (
+14 appUser . getUsername () ,
+15 appUser . getPassword () ,
+16 // On transforme notre liste de AppRole en une collection de
+GrantedAuthority
+17 // C'est le format que Spring Security comprend pour les rô les.
+18 appUser . getRoles () . stream ()
+13
+
+19 . map ( role -> new SimpleGrantedAuthority ( role . getNom () ) )
+20 . toList ()
+21 ) ;
+22 };
+23 }
+
+Listing 8 – Bean UserDetailsService
+
+5.5.2 Le PasswordEncoder : Le gardien des mots de passe
+Ce Bean définit l’algorithme que nous utiliserons pour hacher les mots de passe. C’est une règle de
+sécurité fondamentale : on ne stocke jamais les mots de passe en clair. En exposant ce Bean,
+nous permettons à Spring de l’utiliser partout où une comparaison de mot de passe est nécessaire.
+1 @Bean
+2 public PasswordEncoder passwordEncoder () {
+3 // On utilise BCrypt , l'algorithme standard de l'industrie pour le hachage
+4 // Il est sé curis é car il est adaptatif et intègre un "sel" ( salt )
+automatiquement .
+5 return new BCryptPasswordEncoder () ;
+6 }
+
+Listing 9 – Bean PasswordEncoder
+
+5.5.3 L’AuthenticationProvider : L’expert en validation
+C’est le composant qui assemble les pièces. Il prend le UserDetailsService et le PasswordEncoder
+pour effectuer la validation réelle des identifiants. Son travail consiste à :
+1. Utiliser le UserDetailsService pour charger les détails de l’utilisateur.
+2. Utiliser le PasswordEncoder pour comparer le mot de passe fourni par l’utilisateur avec celui,
+haché, qui est stocké en base de données.
+1 @Bean
+2 public AuthenticationProvider authenticationProvider () {
+3 // DaoAuthenticationProvider est l'impl é mentation standard pour l'
+authentification
+4 // bas ée sur une base de donn ées.
+5 DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider () ;
+6
+7 // On lui fournit notre UserDetailsService pour qu 'il sache où trouver les
+utilisateurs .
+8 authProvider . setUserDetailsService ( userDetailsService () ) ;
+9
+10 // On lui fournit notre PasswordEncoder pour qu 'il sache comment vé rifier les
+mots de passe .
+11 authProvider . setPasswordEncoder ( passwordEncoder () ) ;
+12
+13 return authProvider ;
+14 }
+
+Listing 10 – Bean AuthenticationProvider
+
+5.5.4 L’AuthenticationManager : Le coordinateur de l’authentification
+C’est le gestionnaire principal, le point d’entrée que nous appellerons depuis notre contrôleur pour
+déclencher le processus d’authentification. Il ne fait pas le travail lui-même ; il délègue la tâche à
+l’AuthenticationProvider que nous venons de configurer.
+1 @Bean
+2 public AuthenticationManager authenticationManager ( AuthenticationConfiguration config
+)
+
+14
+
+3 throws Exception {
+4 // Cette méthode , fournie par Spring , expose le gestionnaire d' authentification
+5 // configur é par défaut , qui utilisera notre AuthenticationProvider .
+6 return config . getAuthenticationManager () ;
+7 }
+
+Listing 11 – Bean AuthenticationManager
+
+5.6 Étape 5 : Construction du Gardien de l’API : Le Service et le Filtre JWT
+Cette étape est cruciale. Nous allons créer deux composants essentiels :
+— JwtService : Le "cerveau" de notre gestion de tokens. Il saura comment créer, signer, valider
+et déchiffrer les jetons JWT.
+— JwtAuthenticationFilter : Le "gardien" de notre API. Il interceptera chaque requête pour
+vérifier la présence et la validité d’un token avant de laisser la requête continuer.
+5.6.1 Configuration des propriétés JWT
+Avant de coder, nous devons définir deux paramètres importants dans notre fichier src/main/resources/application.properties :
+1. Une clé secrète pour signer nos tokens. Elle doit être longue, complexe et gardée secrète. Nous
+utiliserons un encodage en Base64.
+2. Une durée d’expiration pour les tokens, définie en millisecondes.
+1 # ======================================================
+2 # = CONFIGURATION JSON WEB TOKEN =
+3 # ======================================================
+4 # Cl é secr è te ( encod é e en Base64 ) .
+5 # A generer avec un outil en ligne pour plus de securite .
+6 spring . app . secretkey = NDY4RTU3NjVKNDlPNDJBNkZIN040M0EyRjZBNkZIN0EyRjZBMkY2QjM1NzY =
+7
+8 # Duree de validite du token en millisecondes ( ici , 24 heures )
+9 spring . app . expiration =86400000
+
+Listing 12 – Ajouts dans application.properties
+
+5.6.2 Création du JwtService
+Nous créons maintenant le composant central de notre infrastructure JWT : le JwtService. Cette
+classe est le "coffre-fort" de notre application. Elle détient la connaissance de la clé secrète et centralise
+
+toute la logique de création, d’analyse et de validation des tokens. La version que nous allons implé-
+menter a une particularité importante : elle intègre directement les rôles (autorisations) de l’utilisateur
+
+dans le payload du token. Cette approche rend chaque token autonome et évite des appels superflus à
+la base de données à chaque requête.
+1 package com . poly . gestioncatalogue . security ;
+2
+3 import io . jsonwebtoken . Claims ;
+4 import io . jsonwebtoken . Jwts ;
+5 import io . jsonwebtoken . io . Decoders ;
+6 import io . jsonwebtoken . security . Keys ;
+7 import org . springframework . beans . factory . annotation . Value ;
+8 import org . springframework . security . core . GrantedAuthority ;
+9 import org . springframework . security . core . userdetails . UserDetails ;
+10 import org . springframework . stereotype . Service ;
+11
+12 import java . security . Key ;
+13 import java . util . Date ;
+14 import java . util . HashMap ;
+15 import java . util . Map ;
+16 import java . util . stream . Collectors ;
+
+15
+
+17
+18 /**
+19 * Service pour la gestion des JSON Web Tokens (JWT ).
+20 * Cette classe centralise toutes les operations liees aux JWT :
+21 * - Generation du token a partir des informations de l'utilisateur .
+22 * - Extraction des informations ( claims ) contenues dans le token .
+23 * - Validation de la conformite et de l'integrite du token .
+24 * L' annotation @Service indique a Spring que cette classe est un composant de la
+couche de service .
+25 */
+26 @Service
+27 public class JwtService {
+28
+29 // Cle secrete utilisee pour signer et verifier les tokens .
+30 // Elle est injectee depuis les proprietes de l'application (ex: application .
+properties ).
+31 // Il est crucial que cette cle soit longue , complexe et gardee secrete .
+32 @Value ("${ spring .app. secretkey }")
+33 private String secretKey ;
+34
+35 // Duree de validite du token en millisecondes .
+36 // Egalement injectee depuis les proprietes de l'application .
+37 @Value ("${ spring .app. expiration }")
+38 private long expiration ;
+39
+40 /**
+41 * Extrait le nom d'utilisateur (le " sujet " du token ) a partir d'un token JWT .
+42 * Le sujet est une des revendications ( claims ) standard d'un JWT et identifie de
+maniere unique l'entite concernee par le token .
+43 *
+44 * @param token Le JWT sous forme de chaine de caracteres .
+45 * @return Le nom d'utilisateur extrait du token .
+46 */
+47 public String extractUsername ( String token ) {
+48 return extractAllClaims ( token ) . getSubject () ;
+49 }
+50
+51 /**
+52 * Genere un nouveau token JWT pour un utilisateur authentifie .
+53 * Cette methode est typiquement appelee apres une connexion reussie .
+54 *
+55 * @param userDetails Les details de l' utilisateur ( fournis par Spring Security )
+pour qui le token doit etre genere .
+56 * @return Une chaine de caracteres representant le JWT compacte et signe .
+57 */
+58 public String generateToken ( UserDetails userDetails ) {
+59 Map < String , Object > claims = new HashMap < >() ;
+60
+61 // Ajout des roles ( autorites ) de l'utilisateur comme une revendication
+personnalisee (" claim ").
+62 // Cela permet de creer un token " autonome " : le serveur peut verifier les
+autorisations
+63 // de l'utilisateur en se basant uniquement sur le contenu du token , sans
+avoir a interroger
+64 // la base de donnees a chaque requete . C'est une optimisation de performance
+et de conception .
+65 claims . put (" roles ", userDetails . getAuthorities () . stream ()
+66 . map ( GrantedAuthority :: getAuthority )
+67 . collect ( Collectors . toList () ) ) ;
+68
+69 return createToken ( claims , userDetails . getUsername () ) ;
+70 }
+71
+72 /**
+73 * Valide un token JWT.
+74 * La validation se fait en deux etapes cruciales pour la securite :
+
+16
+
+75 * 1. On verifie que le nom d'utilisateur dans le token correspond a celui de l'
+utilisateur en cours de traitement .
+76 * 2. On s'assure que le token n'a pas expire .
+77 *
+78 * @param token Le JWT a valider .
+79 * @param userDetails Les details de l' utilisateur a comparer avec les
+informations du token .
+80 * @return true si le token est valide , false sinon .
+81 */
+82 public boolean isTokenValid ( String token , UserDetails userDetails ) {
+83 final String username = extractUsername ( token ) ;
+84 return ( username . equals ( userDetails . getUsername () ) ) && ! isTokenExpired ( token )
+;
+85 }
+86
+87 // --- Methodes privees utilitaires ---
+88
+89 /**
+90 * Verifie si un token a expire en comparant sa date d'expiration avec la date
+actuelle .
+91 *
+92 * @param token Le JWT a verifier .
+93 * @return true si le token a expire , false sinon .
+94 */
+95 private boolean isTokenExpired ( String token ) {
+96 return extractExpiration ( token ) . before (new Date () ) ;
+97 }
+98
+99 /**
+100 * Extrait la date d'expiration d'un token JWT.
+101 *
+102 * @param token Le JWT.
+103 * @return La date d'expiration ( java . util . Date ).
+104 */
+105 private Date extractExpiration ( String token ) {
+106 return extractAllClaims ( token ) . getExpiration () ;
+107 }
+108
+109 /**
+110 * Methode centrale pour la creation du token .
+111 * Elle utilise un " builder " pour assembler les differentes parties du JWT :
+112 * - Les revendications ( claims ), incluant les claims personnalises et le sujet .
+113 * - La date d'emission ( Issued At).
+114 * - La date d'expiration ( Expiration ).
+115 * - La signature avec l'algorithme et la cle secrete .
+116 *
+117 * @param claims Les revendications ( payload ) a inclure dans le token .
+118 * @param subject Le sujet du token ( generalement le nom d'utilisateur ).
+119 * @return Le JWT final , serialise sous forme de chaine compacte .
+120 */
+121 private String createToken ( Map < String , Object > claims , String subject ) {
+122 return Jwts . builder ()
+123 . setClaims ( claims )
+124 . setSubject ( subject )
+125 . setIssuedAt (new Date ( System . currentTimeMillis () ) )
+126 . setExpiration ( new Date ( System . currentTimeMillis () + expiration ) )
+127 . signWith ( getSigningKey () ) // Signature du token
+128 . compact () ; // Construction et serialisation du token
+129 }
+130
+131 /**
+132 * Extrait toutes les revendications ( claims ) d'un token .
+133 * C'est une operation critique : avant d'extraire le corps ( payload ), la
+bibliotheque `jjwt `
+134 * va d'abord verifier la signature du token en utilisant la cle secrete .
+135 * Si la signature est invalide (le token a ete altere ), une exception sera levee
+
+17
+
+,
+136 * garantissant ainsi l'integrite des donnees .
+137 *
+138 * @param token Le JWT a parser .
+139 * @return Un objet Claims contenant toutes les informations du payload .
+140 */
+141 private Claims extractAllClaims ( String token ) {
+142 return Jwts . parserBuilder ()
+143 . setSigningKey ( getSigningKey () )
+144 . build ()
+145 . parseClaimsJws ( token )
+146 . getBody () ;
+147 }
+148
+149 /**
+150 * Genere la cle de signature a partir de la cle secrete encodee en Base64 .
+151 * Cette methode decode d'abord la cle secrete , puis cree une instance de `Key `
+152 * specifique a l'algorithme HMAC - SHA.
+153 *
+154 * @return L'objet Key pret a etre utilise pour la signature / verification .
+155 */
+156 private Key getSigningKey () {
+157 byte [] keyBytes = Decoders . BASE64 . decode ( secretKey ) ;
+158 return Keys . hmacShaKeyFor ( keyBytes ) ;
+159 }
+160 }
+
+Listing 13 – JwtService.java
+
+5.6.3 Création du JwtAuthenticationFilter
+Maintenant que notre JwtService est capable de gérer les tokens, nous devons créer le composant
+qui l’utilisera à chaque requête entrante. C’est le rôle du JwtAuthenticationFilter.
+Ce filtre, véritable "gardien" de notre API, a pour mission d’intercepter chaque requête (sauf
+celles explicitement autorisées comme /login), d’en extraire le token JWT, de le valider et, si tout est
+correct, d’authentifier l’utilisateur pour la durée de la requête.
+Nous étendons la classe OncePerRequestFilter fournie par Spring. C’est une bonne pratique qui
+garantit que notre filtre ne s’exécutera qu’une seule fois par requête, même en cas de redirections
+internes au sein du serveur.
+Créez la classe JwtAuthenticationFilter dans votre package security.
+1 package com . poly . gestioncatalogue . security ;
+2
+3 import jakarta . servlet . FilterChain ;
+4 import jakarta . servlet . ServletException ;
+5 import jakarta . servlet . http . HttpServletRequest ;
+6 import jakarta . servlet . http . HttpServletResponse ;
+7 import lombok . RequiredArgsConstructor ;
+8 import org . springframework . lang . NonNull ;
+9 import org . springframework . security . authentication .
+UsernamePasswordAuthenticationToken ;
+10 import org . springframework . security . core . context . SecurityContextHolder ;
+11 import org . springframework . security . core . userdetails . UserDetails ;
+12 import org . springframework . security . core . userdetails . UserDetailsService ;
+13 import org . springframework . security . web . authentication . WebAuthenticationDetailsSource
+;
+14 import org . springframework . stereotype . Component ;
+15 import org . springframework . web . filter . OncePerRequestFilter ;
+16 import java . io . IOException ;
+17
+18 @Component
+19 @AllArgsConstructor
+20 public class JwtAuthenticationFilter extends OncePerRequestFilter {
+21
+
+18
+
+22 private JwtService jwtService ;
+23 private UserDetailsService userDetailsService ;
+24
+25 @Override
+26 protected void doFilterInternal (
+27 @NonNull HttpServletRequest request ,
+28 @NonNull HttpServletResponse response ,
+29 @NonNull FilterChain filterChain
+30 ) throws ServletException , IOException {
+31
+32
+33 String authHeader = request . getHeader (" Authorization ") ;
+34 String jwt ;
+35 String username ;
+36
+37
+38 if ( authHeader == null || ! authHeader . startsWith (" Bearer ") ) {
+39 filterChain . doFilter ( request , response ) ;
+40 return ;
+41 }
+42
+43
+44 jwt = authHeader . substring (7) ;
+45
+46
+47 username = jwtService . extractUsername ( jwt ) ;
+48
+49
+50 if ( username != null && SecurityContextHolder . getContext () . getAuthentication
+() == null ) {
+51
+52 UserDetails userDetails = this . userDetailsService . loadUserByUsername (
+username ) ;
+53
+54
+55 if ( jwtService . isTokenValid ( jwt , userDetails ) ) {
+56
+57 UsernamePasswordAuthenticationToken authToken = new
+UsernamePasswordAuthenticationToken (
+58 userDetails ,
+59 null , // On n'a pas besoin des credentials ici
+60 userDetails . getAuthorities ()
+61 ) ;
+62
+63 authToken . setDetails (
+64 new WebAuthenticationDetailsSource () . buildDetails ( request )
+65 ) ;
+66
+67 SecurityContextHolder . getContext () . setAuthentication ( authToken ) ;
+68 }
+69 }
+70
+71 filterChain . doFilter ( request , response ) ;
+72 }
+73 }
+
+Listing 14 – Implémentation du filtre d’authentification JWT
+
+Analyse du fonctionnement du filtre Le code ci-dessus suit une logique de sécurité rigoureuse :
+— Étape 1 & 2 : Il vérifie la présence d’un token JWT dans le header Authorization. Si aucun
+token n’est présenté, il ne fait rien et laisse les autres filtres de sécurité de Spring décider si la
+ressource demandée est publique ou non.
+— Étape 3 : Il délègue l’extraction du username au JwtService. C’est une bonne séparation des
+responsabilités.
+
+19
+
+— Étape 4 : C’est le cœur de la validation. Le filtre vérifie que l’utilisateur n’est pas déjà au-
+thentifié dans le contexte de sécurité actuel. Ensuite, il charge les données de l’utilisateur (y
+
+compris les rôles/autorisations) depuis la base de données via le UserDetailsService. Cette
+étape est cruciale car elle garantit que les permissions de l’utilisateur sont toujours à jour. Enfin,
+il utilise le JwtService pour valider la signature et la date d’expiration du token par rapport
+aux données de l’utilisateur.
+— Mise à jour du Contexte de Sécurité : Si tout est valide, le filtre crée un objet
+UsernamePasswordAuthenticationToken et le place dans le SecurityContextHolder. C’est
+
+l’action qui dit officiellement à Spring Security : « Pour cette requête, cet utilisateur est authen-
+tifié et voici ses autorisations ».
+
+— Étape 5 : Quoi qu’il arrive, la requête est finalement passée au filtre suivant dans la chaîne,
+qui pourra alors utiliser le contexte de sécurité que nous venons (ou non) de mettre en place.
+5.7 Étape 6 : Création de l’Endpoint d’Authentification
+Pour permettre aux utilisateurs de s’identifier, nous devons exposer un endpoint public qui acceptera
+un nom d’utilisateur et un mot de passe, et qui retournera un token JWT en cas de succès.
+5.7.1 Définition du Contrat d’API (DTO)
+D’abord, nous créons une classe AuthenticationRequest qui définit la structure JSON attendue.
+C’est une pratique essentielle qui rend notre API robuste et claire.
+1 package com . poly . gestioncatalogue . model ;
+2
+3 import lombok . AllArgsConstructor ;
+4 import lombok . Builder ;
+5 import lombok . Data ;
+6 import lombok . NoArgsConstructor ;
+7
+8 /**
+9 * DTO ( Data Transfer Object ) repr é sentant les donn ées attendues
+10 * pour une requ ête d' authentification .
+11 */
+12 @Data
+13 @Builder
+14 @AllArgsConstructor
+15 @NoArgsConstructor
+16 public class AuthenticationRequest {
+17 private String username ;
+18 private String password ;
+19 }
+
+Listing 15 – DTO pour la requête d’authentification (AuthenticationRequest.java)
+5.7.2 Implémentation du Contrôleur
+Ensuite, nous créons le contrôleur qui utilise ce DTO pour traiter la requête de login.
+1 package com . poly . gestioncatalogue . controller ;
+2
+3 import com . poly . gestioncatalogue . model . AuthenticationRequest ;
+4 import com . poly . gestioncatalogue . security . JwtService ;
+5 import lombok . AllArgsConstructor ;
+6 import org . springframework . security . authentication . AuthenticationManager ;
+7 import org . springframework . security . authentication .
+UsernamePasswordAuthenticationToken ;
+8 import org . springframework . security . core . userdetails . UserDetails ;
+9 import org . springframework . security . core . userdetails . UserDetailsService ;
+10 import org . springframework . web . bind . annotation . PostMapping ;
+11 import org . springframework . web . bind . annotation . RequestBody ;
+12 import org . springframework . web . bind . annotation . RequestMapping ;
+
+20
+
+13 import org . springframework . web . bind . annotation . RestController ;
+14
+15 @RestController
+16 @RequestMapping ("/api/ auth ")
+17 @AllArgsConstructor
+18 public class AuthController {
+19
+20 private final AuthenticationManager authenticationManager ;
+21 private final JwtService jwtService ;
+22 private final UserDetailsService userDetailsService ;
+23
+24 @PostMapping ("/ login ")
+25 public String login ( @RequestBody AuthenticationRequest request ) {
+26 // Valide les identifiants en utilisant le manager de Spring Security
+27 authenticationManager . authenticate (
+28 new UsernamePasswordAuthenticationToken (
+29 request . getUsername () ,
+30 request . getPassword ()
+31 )
+32 ) ;
+33
+34 // Si l' authentification réussit , on charge les dé tails de l'utilisateur
+35 final UserDetails user = userDetailsService . loadUserByUsername ( request .
+getUsername () ) ;
+36
+37 // On génère et retourne le token JWT
+38 return jwtService . generateToken ( user ) ;
+39 }
+40 }
+
+Listing 16 – Contrôleur d’authentification (AuthController.java)
+
+5.8 Étape 7 : Application de l’Autorisation par Rôles
+Maintenant, nous restreignons l’accès aux fonctionnalités de modification des produits aux seuls
+administrateurs en utilisant l’annotation @PreAuthorize.
+1 package com . poly . gestioncatalogue . controller ;
+2
+3 import com . poly . gestioncatalogue . entities . Produit ;
+4 import com . poly . gestioncatalogue . service . IProduitService ;
+5 import lombok . AllArgsConstructor ;
+6 import org . springframework . security . access . prepost . PreAuthorize ;
+7 import org . springframework . web . bind . annotation .*;
+8 import java . util . List ;
+9
+10 @RestController
+11 @RequestMapping ("/api")
+12 @CrossOrigin ("*")
+13 @AllArgsConstructor
+14 public class ProduitController {
+15
+16 private final IProduitService produitService ;
+17
+18 @GetMapping ("/ products ")
+19 public List < Produit > getAll () {
+20 // Accessible a tous les utilisateurs authentifies
+21 return produitService . getAllProduits () ;
+22 }
+23
+24 @PostMapping ("/ products / add")
+25 @PreAuthorize (" hasAuthority (' ADMIN ')") // Seul un ADMIN peut executer
+26 public Produit addProduit ( @RequestBody Produit produit ) {
+27 return produitService . saveProduit ( produit ) ;
+28 }
+
+21
+
+29
+30 @PutMapping ("/ products / update ")
+31 @PreAuthorize (" hasAuthority (' ADMIN ')")
+32 public Produit updateProduit ( @RequestBody Produit produit ) {
+33 return produitService . updateProduit ( produit ) ;
+34 }
+35
+36 @DeleteMapping ("/ products /{ id}")
+37 @PreAuthorize (" hasAuthority (' ADMIN ')")
+38 public void deleteProduit ( @PathVariable Long id ) {
+39 produitService . deleteProduitById ( id ) ;
+40 }
+41
+42 // ... les autres methodes GET restent accessibles a tous les users authentifies
+43 }
+
+Listing 17 – Mise à jour du ProduitController.java
+5.9 Étape 8 : Test de la Solution Complète avec Swagger UI
+
+La configuration est terminée. Il est temps de vérifier que l’ensemble de notre système de sécu-
+rité fonctionne comme attendu. Nous utiliserons Swagger UI, l’interface de documentation interactive
+
+générée par Springdoc, pour simuler un client API.
+5.9.1 Configuration Requise
+Pour que Swagger UI puisse interagir avec notre API sécurisée, deux configurations sont nécessaires.
+1. Activer la Sécurité dans Swagger UI Nous devons informer Swagger de notre schéma de
+sécurité "Bearer Token". Cela ajoutera un bouton "Authorize" global à l’interface, permettant aux
+développeurs de s’authentifier. Ajoutez ce Bean dans votre classe de configuration (par exemple,
+BeanConfig.java ou votre classe principale).
+1 import io . swagger . v3 . oas . models . info . Info ;
+2 import io . swagger . v3 . oas . models . OpenAPI ;
+3 import io . swagger . v3 . oas . models . security . SecurityRequirement ;
+4 import io . swagger . v3 . oas . models . security . SecurityScheme ;
+5 import org . springframework . context . annotation . Bean ;
+6 import org . springframework . context . annotation . Configuration ;
+7
+8 @Configuration
+9 public class OpenApiConfig { // ou ajoutez le Bean dans une classe existante
+10
+11 @Bean
+12 public OpenAPI customOpenAPI () {
+13 final String securitySchemeName = " bearerAuth ";
+14 return new OpenAPI ()
+15
+16 . info ( new Info () . title (" Catalogue API ") . version ("1.0") )
+17
+18 . addSecurityItem (new SecurityRequirement () . addList ( securitySchemeName
+) )
+19
+20 . components (new io . swagger . v3 . oas . models . Components ()
+21 . addSecuritySchemes ( securitySchemeName ,
+22 new SecurityScheme ()
+23 . name ( securitySchemeName )
+24 . type ( SecurityScheme . Type . HTTP )
+25 . scheme (" bearer ")
+26 . bearerFormat (" JWT")
+27 )
+28 ) ;
+29 }
+
+22
+
+30 }
+
+Listing 18 – Configuration OpenAPI pour la sécurité JWT
+
+2. Autoriser l’Accès Public à Swagger UI Notre SecurityConfig bloque tout par défaut. Nous
+devons explicitement autoriser l’accès aux ressources de Swagger UI, sinon la page de documentation
+elle-même serait inaccessible.
+Modifiez votre SecurityFilterChain dans SecurityConfig.java :
+1 // ... dans la mé thode securityFilterChain ( HttpSecurity http )
+2
+3 . authorizeHttpRequests ( auth -> auth
+4
+5 . requestMatchers ("/api/ auth /**") . permitAll ()
+6
+7 // On autorise l'accès à la documentation Swagger
+8 . requestMatchers (
+9 "/v3/api - docs /**",
+10 "/ swagger -ui /**",
+11 "/ swagger -ui. html "
+12 ) . permitAll ()
+13
+14
+15 . anyRequest () . authenticated ()
+16 )
+17
+18 // ... reste de la configuration
+
+Listing 19 – Mise à jour de SecurityConfig pour autoriser Swagger
+5.9.2 Scénario 1 : Authentification et obtention du Token (Admin)
+Maintenant que tout est configuré, accédez à l’URL de Swagger UI dans votre navigateur : http://localhost:8081/swagger-ui.html.
+1. Cliquez sur la ligne POST /api/auth/login.
+2. Cliquez sur le bouton "Try it out".
+3. Dans le champ "Request body", modifiez le JSON pour entrer les identifiants de l’admin :
+{
+"username": "admin",
+"password": "1234"
+}
+4. Cliquez sur le bouton bleu "Execute". Vous devriez recevoir une réponse avec un code 200 et
+le jeton JWT dans le corps de la réponse. Copiez l’intégralité de ce jeton.
+
+5.9.3 Scénario 2 : Accès Autorisé (Action Admin)
+Utilisons maintenant ce token pour autoriser toutes nos futures requêtes dans Swagger.
+1. En haut à droite de la page Swagger, cliquez sur le bouton "Authorize".
+2. Une fenêtre pop-up "Available authorizations" apparaît. Dans le champ "Value" pour bearerAuth,
+collez le jeton JWT de l’admin que vous venez de copier.
+3. Cliquez sur "Authorize", puis fermez la fenêtre. Le cadenas du bouton est maintenant fermé.
+4. Naviguez jusqu’à l’endpoint protégé, par exemple le product-controller, et développez la
+requête DELETE /api/products/{id}.
+23
+
+5. Cliquez sur "Try it out", entrez un ID de produit existant (ex : 1), et cliquez sur "Execute".
+6. La requête doit réussir avec un statut 200 OK, confirmant que l’admin a bien le droit de
+supprimer un produit.
+
+5.9.4 Scénario 3 : Accès Refusé (Action Admin avec un Token User)
+Vérifions maintenant que notre protection basée sur les rôles est efficace.
+1. Répétez le Scénario 1 avec les identifiants de l’utilisateur standard ("username": "user").
+Copiez le nouveau token obtenu.
+2. Cliquez à nouveau sur le bouton "Authorize" en haut à droite.
+3. Cliquez d’abord sur "Logout" pour effacer l’ancien token, puis collez le nouveau token de
+l’utilisateur "user" dans le champ "Value" et cliquez sur "Authorize".
+4. Retournez à la requête DELETE /api/products/{id} et exécutez-la de nouveau.
+5. Comme attendu, la requête doit échouer avec un statut 403 Forbidden. La réponse indique que
+l’accès est refusé, confirmant que notre sécurité a bien bloqué l’utilisateur qui n’a pas l’autorité
+’ADMIN’.
