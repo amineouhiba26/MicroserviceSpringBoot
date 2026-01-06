@@ -76,20 +76,28 @@ public class ChatController {
     private Intent classifyIntent(String message) {
         String m = message.toLowerCase();
 
-        if (m.contains("list") && m.contains("product")) return Intent.LIST_PRODUCTS;
-        if (m.contains("product") && m.contains("detail")) return Intent.GET_PRODUCT;
+        // Product-related intents
+        if (m.contains("product") || m.contains("produit") || m.contains("produits")) {
+            if (m.contains("create") || m.contains("add") || m.contains("créer") || m.contains("ajouter")) return Intent.CREATE_PRODUCT;
+            if (m.contains("update") || m.contains("modify") || m.contains("modifier")) return Intent.UPDATE_PRODUCT;
+            if (m.contains("delete") || m.contains("remove") || m.contains("supprimer")) return Intent.DELETE_PRODUCT;
+            if (m.contains("detail") || m.contains("id") || m.contains("détail")) return Intent.GET_PRODUCT;
+            return Intent.LIST_PRODUCTS;
+        }
+
+        // Client-related intents
         if (m.contains("client")) return Intent.LIST_CLIENTS;
+
+        // Order-related intents
         if (m.contains("order") || m.contains("commande") || m.contains("commandes") || m.contains("ordre") || m.contains("ordres")) return Intent.LIST_ORDERS;
-        if (m.contains("create") || m.contains("add")) return Intent.CREATE_PRODUCT;
-        if (m.contains("update") || m.contains("modify")) return Intent.UPDATE_PRODUCT;
-        if (m.contains("delete") || m.contains("remove")) return Intent.DELETE_PRODUCT;
 
         return Intent.UNKNOWN;
     }
 
     private static final Map<Intent, Boolean> USER_PERMISSIONS = Map.of(
             Intent.LIST_PRODUCTS, true,
-            Intent.GET_PRODUCT, true
+            Intent.GET_PRODUCT, true,
+            Intent.UNKNOWN, true
     );
 
     private boolean isAllowed(boolean admin, Intent intent) {

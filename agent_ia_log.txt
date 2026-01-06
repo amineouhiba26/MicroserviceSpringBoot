@@ -8,182 +8,164 @@
 
  :: Spring Boot ::                (v3.3.5)
 
-2026-01-06T22:49:50.012+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] c.e.agentia.AgentIaServiceApplication    : Starting AgentIaServiceApplication v0.0.1-SNAPSHOT using Java 17.0.16 with PID 1698 (/Users/amineouhiba/MicroserviceSpringBoot/agent-ia-service/target/agent-ia-service-0.0.1-SNAPSHOT.jar started by amineouhiba in /Users/amineouhiba/MicroserviceSpringBoot)
-2026-01-06T22:49:50.014+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] c.e.agentia.AgentIaServiceApplication    : No active profile set, falling back to 1 default profile: "default"
-2026-01-06T22:49:50.725+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=07acabf9-3e68-3709-9137-fcfff47f5cdf
-2026-01-06T22:49:50.946+01:00  WARN 1698 --- [AGENT-IA-SERVICE] [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
-2026-01-06T22:49:50.948+01:00  WARN 1698 --- [AGENT-IA-SERVICE] [           main] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
-2026-01-06T22:49:50.949+01:00  WARN 1698 --- [AGENT-IA-SERVICE] [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
-2026-01-06T22:49:50.949+01:00  WARN 1698 --- [AGENT-IA-SERVICE] [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
-2026-01-06T22:49:50.949+01:00  WARN 1698 --- [AGENT-IA-SERVICE] [           main] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
-2026-01-06T22:49:51.066+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
-2026-01-06T22:49:51.075+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
-2026-01-06T22:49:51.076+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
-2026-01-06T22:49:51.096+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
-2026-01-06T22:49:51.097+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1054 ms
-2026-01-06T22:49:51.513+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [           main] .m.c.t.HttpClientStreamableHttpTransport : Exception handler registered
-2026-01-06T22:49:51.526+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [           main] i.m.client.LifecycleInitializer          : Initialization process started
-2026-01-06T22:49:51.577+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [           main] i.m.spec.McpClientSession                : Sending message for method initialize
-2026-01-06T22:49:51.579+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [           main] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCRequest[jsonrpc=2.0, method=initialize, id=9853abfa-0, params=InitializeRequest[protocolVersion=2025-06-18, capabilities=ClientCapabilities[experimental=null, roots=null, sampling=null, elicitation=null], clientInfo=Implementation[name=spring-ai-mcp-client - product-service, title=product-service, version=1.0.0], meta=null]]
-2026-01-06T22:49:51.677+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : Received response, using string subscriber
-2026-01-06T22:49:51.686+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] i.m.spec.DefaultMcpTransportSession      : Established session with id 55e4b2d3-722b-4830-99ab-8a2a7f918edc
-2026-01-06T22:49:51.686+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : Reconnecting with no prior stream
-2026-01-06T22:49:51.688+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] io.modelcontextprotocol.spec.McpSchema   : Received JSON message: {"jsonrpc":"2.0","id":"9853abfa-0","result":{"protocolVersion":"2025-06-18","capabilities":{"completions":{},"logging":{},"prompts":{"listChanged":true},"resources":{"subscribe":false,"listChanged":true},"tools":{"listChanged":true}},"serverInfo":{"name":"mcp-server","version":"1.0.0"}}}
+2026-01-06T23:44:43.330+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] c.e.agentia.AgentIaServiceApplication    : Starting AgentIaServiceApplication v0.0.1-SNAPSHOT using Java 17.0.16 with PID 23156 (/Users/amineouhiba/MicroserviceSpringBoot/agent-ia-service/target/agent-ia-service-0.0.1-SNAPSHOT.jar started by amineouhiba in /Users/amineouhiba/MicroserviceSpringBoot)
+2026-01-06T23:44:43.334+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] c.e.agentia.AgentIaServiceApplication    : No active profile set, falling back to 1 default profile: "default"
+2026-01-06T23:44:44.380+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] o.s.cloud.context.scope.GenericScope     : BeanFactory id=07acabf9-3e68-3709-9137-fcfff47f5cdf
+2026-01-06T23:44:44.595+01:00  WARN 23156 --- [AGENT-IA-SERVICE] [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig' of type [org.springframework.cloud.client.loadbalancer.LoadBalancerAutoConfiguration$DeferringLoadBalancerInterceptorConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [lbRestClientPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2026-01-06T23:44:44.597+01:00  WARN 23156 --- [AGENT-IA-SERVICE] [           main] trationDelegate$BeanPostProcessorChecker : Bean 'deferringLoadBalancerInterceptor' of type [org.springframework.cloud.client.loadbalancer.DeferringLoadBalancerInterceptor] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [lbRestClientPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-01-06T23:44:44.598+01:00  WARN 23156 --- [AGENT-IA-SERVICE] [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). The currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor] is declared through a non-static factory method on that class; consider declaring it as static instead.
+2026-01-06T23:44:44.598+01:00  WARN 23156 --- [AGENT-IA-SERVICE] [           main] trationDelegate$BeanPostProcessorChecker : Bean 'org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig' of type [org.springframework.cloud.client.loadbalancer.reactive.LoadBalancerBeanPostProcessorAutoConfiguration$ReactorDeferringLoadBalancerFilterConfig] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-01-06T23:44:44.598+01:00  WARN 23156 --- [AGENT-IA-SERVICE] [           main] trationDelegate$BeanPostProcessorChecker : Bean 'reactorDeferringLoadBalancerExchangeFilterFunction' of type [org.springframework.cloud.client.loadbalancer.reactive.DeferringLoadBalancerExchangeFilterFunction] is not eligible for getting processed by all BeanPostProcessors (for example: not eligible for auto-proxying). Is this bean getting eagerly injected/applied to a currently created BeanPostProcessor [loadBalancerWebClientBuilderBeanPostProcessor]? Check the corresponding BeanPostProcessor declaration and its dependencies/advisors. If this bean does not have to be post-processed, declare it with ROLE_INFRASTRUCTURE.
+2026-01-06T23:44:44.710+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat initialized with port 8081 (http)
+2026-01-06T23:44:44.718+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] o.apache.catalina.core.StandardService   : Starting service [Tomcat]
+2026-01-06T23:44:44.718+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] o.apache.catalina.core.StandardEngine    : Starting Servlet engine: [Apache Tomcat/10.1.31]
+2026-01-06T23:44:44.739+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring embedded WebApplicationContext
+2026-01-06T23:44:44.740+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] w.s.c.ServletWebServerApplicationContext : Root WebApplicationContext: initialization completed in 1356 ms
+2026-01-06T23:44:45.264+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [           main] .m.c.t.HttpClientStreamableHttpTransport : Exception handler registered
+2026-01-06T23:44:45.288+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [           main] i.m.client.LifecycleInitializer          : Initialization process started
+2026-01-06T23:44:45.385+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [           main] i.m.spec.McpClientSession                : Sending message for method initialize
+2026-01-06T23:44:45.387+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [           main] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCRequest[jsonrpc=2.0, method=initialize, id=a272eed8-0, params=InitializeRequest[protocolVersion=2025-06-18, capabilities=ClientCapabilities[experimental=null, roots=null, sampling=null, elicitation=null], clientInfo=Implementation[name=spring-ai-mcp-client - product-service, title=product-service, version=1.0.0], meta=null]]
+2026-01-06T23:44:45.587+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : Received response, using string subscriber
+2026-01-06T23:44:45.596+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] i.m.spec.DefaultMcpTransportSession      : Established session with id 9a2840a9-baad-4228-ab1d-0ee61eceaa38
+2026-01-06T23:44:45.597+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : Reconnecting with no prior stream
+2026-01-06T23:44:45.599+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] io.modelcontextprotocol.spec.McpSchema   : Received JSON message: {"jsonrpc":"2.0","id":"a272eed8-0","result":{"protocolVersion":"2025-06-18","capabilities":{"completions":{},"logging":{},"prompts":{"listChanged":true},"resources":{"subscribe":false,"listChanged":true},"tools":{"listChanged":true}},"serverInfo":{"name":"mcp-server","version":"1.0.0"}}}
 
-2026-01-06T22:49:51.724+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] i.m.spec.McpClientSession                : Received response: JSONRPCResponse[jsonrpc=2.0, id=9853abfa-0, result={protocolVersion=2025-06-18, capabilities={completions={}, logging={}, prompts={listChanged=true}, resources={subscribe=false, listChanged=true}, tools={listChanged=true}}, serverInfo={name=mcp-server, version=1.0.0}}, error=null]
-2026-01-06T22:49:51.732+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] i.m.client.LifecycleInitializer          : Server response with Protocol: 2025-06-18, Capabilities: ServerCapabilities[completions=CompletionCapabilities[], experimental=null, logging=LoggingCapabilities[], prompts=PromptCapabilities[listChanged=true], resources=ResourceCapabilities[subscribe=false, listChanged=true], tools=ToolCapabilities[listChanged=true]], Info: Implementation[name=mcp-server, title=null, version=1.0.0] and Instructions null
-2026-01-06T22:49:51.736+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCNotification[jsonrpc=2.0, method=notifications/initialized, params=null]
-2026-01-06T22:49:51.737+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
-2026-01-06T22:49:51.739+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [onPool-worker-1] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
-2026-01-06T22:49:51.740+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : Received Bodyless response, using discarding subscriber
-2026-01-06T22:49:51.741+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : No body returned for POST in session 55e4b2d3-722b-4830-99ab-8a2a7f918edc
-2026-01-06T22:49:51.742+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
-2026-01-06T22:49:51.742+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [           main] .m.c.t.HttpClientStreamableHttpTransport : Exception handler registered
-2026-01-06T22:49:51.742+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [           main] i.m.client.LifecycleInitializer          : Initialization process started
-2026-01-06T22:49:51.742+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [onPool-worker-1] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
-2026-01-06T22:49:51.743+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [           main] i.m.spec.McpClientSession                : Sending message for method initialize
-2026-01-06T22:49:51.743+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [           main] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCRequest[jsonrpc=2.0, method=initialize, id=ce571395-0, params=InitializeRequest[protocolVersion=2025-06-18, capabilities=ClientCapabilities[experimental=null, roots=null, sampling=null, elicitation=null], clientInfo=Implementation[name=spring-ai-mcp-client - commande-service, title=commande-service, version=1.0.0], meta=null]]
-2026-01-06T22:49:51.978+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-2-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : Received response, using string subscriber
-2026-01-06T22:49:51.979+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-2-Worker-0] i.m.spec.DefaultMcpTransportSession      : Established session with id 85bf288b-82c9-46fd-a2e4-ae9d022231ec
-2026-01-06T22:49:51.979+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-2-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : Reconnecting with no prior stream
-2026-01-06T22:49:51.979+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-2-Worker-0] io.modelcontextprotocol.spec.McpSchema   : Received JSON message: {"jsonrpc":"2.0","id":"ce571395-0","result":{"protocolVersion":"2025-06-18","capabilities":{"completions":{},"logging":{},"prompts":{"listChanged":true},"resources":{"subscribe":false,"listChanged":true},"tools":{"listChanged":true}},"serverInfo":{"name":"mcp-server","version":"1.0.0"}}}
+2026-01-06T23:44:45.649+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] i.m.spec.McpClientSession                : Received response: JSONRPCResponse[jsonrpc=2.0, id=a272eed8-0, result={protocolVersion=2025-06-18, capabilities={completions={}, logging={}, prompts={listChanged=true}, resources={subscribe=false, listChanged=true}, tools={listChanged=true}}, serverInfo={name=mcp-server, version=1.0.0}}, error=null]
+2026-01-06T23:44:45.659+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] i.m.client.LifecycleInitializer          : Server response with Protocol: 2025-06-18, Capabilities: ServerCapabilities[completions=CompletionCapabilities[], experimental=null, logging=LoggingCapabilities[], prompts=PromptCapabilities[listChanged=true], resources=ResourceCapabilities[subscribe=false, listChanged=true], tools=ToolCapabilities[listChanged=true]], Info: Implementation[name=mcp-server, title=null, version=1.0.0] and Instructions null
+2026-01-06T23:44:45.664+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCNotification[jsonrpc=2.0, method=notifications/initialized, params=null]
+2026-01-06T23:44:45.667+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
+2026-01-06T23:44:45.671+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [onPool-worker-1] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
+2026-01-06T23:44:45.677+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : Received Bodyless response, using discarding subscriber
+2026-01-06T23:44:45.679+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : No body returned for POST in session 9a2840a9-baad-4228-ab1d-0ee61eceaa38
+2026-01-06T23:44:45.680+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
+2026-01-06T23:44:45.680+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [onPool-worker-1] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
+2026-01-06T23:44:45.680+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [           main] .m.c.t.HttpClientStreamableHttpTransport : Exception handler registered
+2026-01-06T23:44:45.680+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [           main] i.m.client.LifecycleInitializer          : Initialization process started
+2026-01-06T23:44:45.681+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [           main] i.m.spec.McpClientSession                : Sending message for method initialize
+2026-01-06T23:44:45.682+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [           main] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCRequest[jsonrpc=2.0, method=initialize, id=92560870-0, params=InitializeRequest[protocolVersion=2025-06-18, capabilities=ClientCapabilities[experimental=null, roots=null, sampling=null, elicitation=null], clientInfo=Implementation[name=spring-ai-mcp-client - commande-service, title=commande-service, version=1.0.0], meta=null]]
+2026-01-06T23:44:45.862+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-2] .m.c.t.HttpClientStreamableHttpTransport : Received response, using string subscriber
+2026-01-06T23:44:45.863+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-2] i.m.spec.DefaultMcpTransportSession      : Established session with id 268f648d-99fc-4347-962a-a9c64a0b8d7a
+2026-01-06T23:44:45.863+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-2] .m.c.t.HttpClientStreamableHttpTransport : Reconnecting with no prior stream
+2026-01-06T23:44:45.863+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-2] io.modelcontextprotocol.spec.McpSchema   : Received JSON message: {"jsonrpc":"2.0","id":"92560870-0","result":{"protocolVersion":"2025-06-18","capabilities":{"completions":{},"logging":{},"prompts":{"listChanged":true},"resources":{"subscribe":false,"listChanged":true},"tools":{"listChanged":true}},"serverInfo":{"name":"mcp-server","version":"1.0.0"}}}
 
-2026-01-06T22:49:51.979+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-2-Worker-0] i.m.spec.McpClientSession                : Received response: JSONRPCResponse[jsonrpc=2.0, id=ce571395-0, result={protocolVersion=2025-06-18, capabilities={completions={}, logging={}, prompts={listChanged=true}, resources={subscribe=false, listChanged=true}, tools={listChanged=true}}, serverInfo={name=mcp-server, version=1.0.0}}, error=null]
-2026-01-06T22:49:51.979+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [ient-2-Worker-0] i.m.client.LifecycleInitializer          : Server response with Protocol: 2025-06-18, Capabilities: ServerCapabilities[completions=CompletionCapabilities[], experimental=null, logging=LoggingCapabilities[], prompts=PromptCapabilities[listChanged=true], resources=ResourceCapabilities[subscribe=false, listChanged=true], tools=ToolCapabilities[listChanged=true]], Info: Implementation[name=mcp-server, title=null, version=1.0.0] and Instructions null
-2026-01-06T22:49:51.980+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-2-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCNotification[jsonrpc=2.0, method=notifications/initialized, params=null]
-2026-01-06T22:49:51.980+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-2-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
-2026-01-06T22:49:51.980+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [onPool-worker-1] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
-2026-01-06T22:49:52.010+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-2-Worker-2] .m.c.t.HttpClientStreamableHttpTransport : Received Bodyless response, using discarding subscriber
-2026-01-06T22:49:52.010+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-2-Worker-2] .m.c.t.HttpClientStreamableHttpTransport : No body returned for POST in session 85bf288b-82c9-46fd-a2e4-ae9d022231ec
-2026-01-06T22:49:52.011+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-2-Worker-2] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
-2026-01-06T22:49:52.011+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [onPool-worker-1] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
-2026-01-06T22:49:52.011+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [           main] .m.c.t.HttpClientStreamableHttpTransport : Exception handler registered
-2026-01-06T22:49:52.011+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [           main] i.m.client.LifecycleInitializer          : Initialization process started
-2026-01-06T22:49:52.011+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [           main] i.m.spec.McpClientSession                : Sending message for method initialize
-2026-01-06T22:49:52.011+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [           main] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCRequest[jsonrpc=2.0, method=initialize, id=f6d3861a-0, params=InitializeRequest[protocolVersion=2025-06-18, capabilities=ClientCapabilities[experimental=null, roots=null, sampling=null, elicitation=null], clientInfo=Implementation[name=spring-ai-mcp-client - client-service, title=client-service, version=1.0.0], meta=null]]
-2026-01-06T22:49:52.176+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : Received response, using string subscriber
-2026-01-06T22:49:52.177+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] i.m.spec.DefaultMcpTransportSession      : Established session with id caaa7b26-f860-4207-844c-96c5c27d43b4
-2026-01-06T22:49:52.177+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : Reconnecting with no prior stream
-2026-01-06T22:49:52.177+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] io.modelcontextprotocol.spec.McpSchema   : Received JSON message: {"jsonrpc":"2.0","id":"f6d3861a-0","result":{"protocolVersion":"2025-06-18","capabilities":{"completions":{},"logging":{},"prompts":{"listChanged":true},"resources":{"subscribe":false,"listChanged":true},"tools":{"listChanged":true}},"serverInfo":{"name":"mcp-server","version":"1.0.0"}}}
+2026-01-06T23:44:45.863+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-2] i.m.spec.McpClientSession                : Received response: JSONRPCResponse[jsonrpc=2.0, id=92560870-0, result={protocolVersion=2025-06-18, capabilities={completions={}, logging={}, prompts={listChanged=true}, resources={subscribe=false, listChanged=true}, tools={listChanged=true}}, serverInfo={name=mcp-server, version=1.0.0}}, error=null]
+2026-01-06T23:44:45.864+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-2] i.m.client.LifecycleInitializer          : Server response with Protocol: 2025-06-18, Capabilities: ServerCapabilities[completions=CompletionCapabilities[], experimental=null, logging=LoggingCapabilities[], prompts=PromptCapabilities[listChanged=true], resources=ResourceCapabilities[subscribe=false, listChanged=true], tools=ToolCapabilities[listChanged=true]], Info: Implementation[name=mcp-server, title=null, version=1.0.0] and Instructions null
+2026-01-06T23:44:45.864+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-2] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCNotification[jsonrpc=2.0, method=notifications/initialized, params=null]
+2026-01-06T23:44:45.864+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-2] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
+2026-01-06T23:44:45.865+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [onPool-worker-1] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
+2026-01-06T23:44:45.874+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-2] .m.c.t.HttpClientStreamableHttpTransport : Received Bodyless response, using discarding subscriber
+2026-01-06T23:44:45.874+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-2] .m.c.t.HttpClientStreamableHttpTransport : No body returned for POST in session 268f648d-99fc-4347-962a-a9c64a0b8d7a
+2026-01-06T23:44:45.874+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-2] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
+2026-01-06T23:44:45.875+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [           main] .m.c.t.HttpClientStreamableHttpTransport : Exception handler registered
+2026-01-06T23:44:45.875+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [onPool-worker-1] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
+2026-01-06T23:44:45.875+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [           main] i.m.client.LifecycleInitializer          : Initialization process started
+2026-01-06T23:44:45.876+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [           main] i.m.spec.McpClientSession                : Sending message for method initialize
+2026-01-06T23:44:45.876+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [           main] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCRequest[jsonrpc=2.0, method=initialize, id=9706f881-0, params=InitializeRequest[protocolVersion=2025-06-18, capabilities=ClientCapabilities[experimental=null, roots=null, sampling=null, elicitation=null], clientInfo=Implementation[name=spring-ai-mcp-client - client-service, title=client-service, version=1.0.0], meta=null]]
+2026-01-06T23:44:46.046+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : Received response, using string subscriber
+2026-01-06T23:44:46.047+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] i.m.spec.DefaultMcpTransportSession      : Established session with id 7106201a-69e0-4191-b4a9-03ae742cf10a
+2026-01-06T23:44:46.047+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : Reconnecting with no prior stream
+2026-01-06T23:44:46.047+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] io.modelcontextprotocol.spec.McpSchema   : Received JSON message: {"jsonrpc":"2.0","id":"9706f881-0","result":{"protocolVersion":"2025-06-18","capabilities":{"completions":{},"logging":{},"prompts":{"listChanged":true},"resources":{"subscribe":false,"listChanged":true},"tools":{"listChanged":true}},"serverInfo":{"name":"mcp-server","version":"1.0.0"}}}
 
-2026-01-06T22:49:52.177+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] i.m.spec.McpClientSession                : Received response: JSONRPCResponse[jsonrpc=2.0, id=f6d3861a-0, result={protocolVersion=2025-06-18, capabilities={completions={}, logging={}, prompts={listChanged=true}, resources={subscribe=false, listChanged=true}, tools={listChanged=true}}, serverInfo={name=mcp-server, version=1.0.0}}, error=null]
-2026-01-06T22:49:52.178+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] i.m.client.LifecycleInitializer          : Server response with Protocol: 2025-06-18, Capabilities: ServerCapabilities[completions=CompletionCapabilities[], experimental=null, logging=LoggingCapabilities[], prompts=PromptCapabilities[listChanged=true], resources=ResourceCapabilities[subscribe=false, listChanged=true], tools=ToolCapabilities[listChanged=true]], Info: Implementation[name=mcp-server, title=null, version=1.0.0] and Instructions null
-2026-01-06T22:49:52.178+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCNotification[jsonrpc=2.0, method=notifications/initialized, params=null]
-2026-01-06T22:49:52.178+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
-2026-01-06T22:49:52.178+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [onPool-worker-1] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
-2026-01-06T22:49:52.206+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-3-Worker-1] .m.c.t.HttpClientStreamableHttpTransport : Received Bodyless response, using discarding subscriber
-2026-01-06T22:49:52.207+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-3-Worker-1] .m.c.t.HttpClientStreamableHttpTransport : No body returned for POST in session caaa7b26-f860-4207-844c-96c5c27d43b4
-2026-01-06T22:49:52.207+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-3-Worker-1] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
-2026-01-06T22:49:52.207+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [onPool-worker-1] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
-2026-01-06T22:49:52.212+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [           main] o.s.a.m.t.a.ToolCallingAutoConfiguration : Cannot load class: org.springframework.security.oauth2.client.ClientAuthorizationException
-2026-01-06T22:49:52.367+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
-2026-01-06T22:49:52.392+01:00  WARN 1698 --- [AGENT-IA-SERVICE] [           main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
-2026-01-06T22:49:52.397+01:00  WARN 1698 --- [AGENT-IA-SERVICE] [           main] o.s.m.p.s.SyncMcpSamplingProvider        : No sampling methods found
-2026-01-06T22:49:52.398+01:00  WARN 1698 --- [AGENT-IA-SERVICE] [           main] o.s.m.p.e.SyncMcpElicitationProvider     : No elicitation methods found
-2026-01-06T22:49:52.433+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
-2026-01-06T22:49:52.450+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
-2026-01-06T22:49:52.452+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
-2026-01-06T22:49:52.457+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
-2026-01-06T22:49:52.457+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
-2026-01-06T22:49:52.457+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
-2026-01-06T22:49:52.457+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Application is null : false
-2026-01-06T22:49:52.457+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
-2026-01-06T22:49:52.457+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
-2026-01-06T22:49:52.457+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
-2026-01-06T22:49:52.550+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : The response status is 200
-2026-01-06T22:49:52.551+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
-2026-01-06T22:49:52.557+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
-2026-01-06T22:49:52.558+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1767736192558 with initial instances count: 6
-2026-01-06T22:49:52.559+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application AGENT-IA-SERVICE with eureka with status UP
-2026-01-06T22:49:52.559+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1767736192559, current=UP, previous=STARTING]
-2026-01-06T22:49:52.560+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081: registering service...
-2026-01-06T22:49:52.576+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081 - registration status: 204
-2026-01-06T22:49:52.635+01:00 ERROR 1698 --- [AGENT-IA-SERVICE] [           main] i.n.r.d.DnsServerAddressStreamProviders  : Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
-2026-01-06T22:49:52.646+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
-2026-01-06T22:49:52.647+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8081
-2026-01-06T22:49:52.665+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [           main] c.e.agentia.AgentIaServiceApplication    : Started AgentIaServiceApplication in 2.957 seconds (process running for 3.326)
-2026-01-06T22:50:22.633+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [beatExecutor-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081 - Re-registering apps/AGENT-IA-SERVICE
-2026-01-06T22:50:22.634+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [beatExecutor-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081: registering service...
-2026-01-06T22:50:22.638+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [beatExecutor-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081 - registration status: 204
-2026-01-06T22:50:23.099+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
-2026-01-06T22:50:23.099+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
-2026-01-06T22:50:23.103+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 4 ms
-2026-01-06T22:52:20.769+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [nio-8081-exec-3] i.m.client.LifecycleInitializer          : Joining previous initialization
-2026-01-06T22:52:20.772+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [nio-8081-exec-3] i.m.spec.McpClientSession                : Sending message for method tools/list
-2026-01-06T22:52:20.772+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [nio-8081-exec-3] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCRequest[jsonrpc=2.0, method=tools/list, id=9853abfa-1, params=PaginatedRequest[cursor=null, meta=null]]
-2026-01-06T22:52:20.832+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-6] .m.c.t.HttpClientStreamableHttpTransport : Received SSE stream response, using line subscriber
-2026-01-06T22:52:20.835+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-6] io.modelcontextprotocol.spec.McpSchema   : Received JSON message: {"jsonrpc":"2.0","id":"9853abfa-1","result":{"tools":[{"name":"getProducts","title":"getProducts","description":"Récupère la liste de tous les produits","inputSchema":{"type":"object","properties":{},"required":[]},"annotations":{"title":"","readOnlyHint":false,"destructiveHint":true,"idempotentHint":false,"openWorldHint":true}},{"name":"createProduct","title":"createProduct","description":"Crée un nouveau produit avec un nom et un prix","inputSchema":{"type":"object","properties":{"nom":{"type":"string","description":"Nom du produit"},"prix":{"type":"number","format":"double","description":"Prix du produit"}},"required":["nom","prix"]},"annotations":{"title":"","readOnlyHint":false,"destructiveHint":true,"idempotentHint":false,"openWorldHint":true}},{"name":"getProduct","title":"getProduct","description":"Récupère un produit via son ID","inputSchema":{"type":"object","properties":{"id":{"type":"integer","format":"int64","description":"ID du produit"}},"required":["id"]},"annotations":{"title":"","readOnlyHint":false,"destructiveHint":true,"idempotentHint":false,"openWorldHint":true}}]}}
-2026-01-06T22:52:20.837+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-6] .m.c.t.HttpClientStreamableHttpTransport : Connected stream 0
-2026-01-06T22:52:20.842+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-6] i.m.spec.DefaultMcpTransportStream       : Updating last id null -> 55e4b2d3-722b-4830-99ab-8a2a7f918edc for stream 0
-2026-01-06T22:52:20.842+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-6] i.m.spec.McpClientSession                : Received response: JSONRPCResponse[jsonrpc=2.0, id=9853abfa-1, result={tools=[{name=getProducts, title=getProducts, description=Récupère la liste de tous les produits, inputSchema={type=object, properties={}, required=[]}, annotations={title=, readOnlyHint=false, destructiveHint=true, idempotentHint=false, openWorldHint=true}}, {name=createProduct, title=createProduct, description=Crée un nouveau produit avec un nom et un prix, inputSchema={type=object, properties={nom={type=string, description=Nom du produit}, prix={type=number, format=double, description=Prix du produit}}, required=[nom, prix]}, annotations={title=, readOnlyHint=false, destructiveHint=true, idempotentHint=false, openWorldHint=true}}, {name=getProduct, title=getProduct, description=Récupère un produit via son ID, inputSchema={type=object, properties={id={type=integer, format=int64, description=ID du produit}}, required=[id]}, annotations={title=, readOnlyHint=false, destructiveHint=true, idempotentHint=false, openWorldHint=true}}]}, error=null]
-2026-01-06T22:52:20.849+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-6] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
-2026-01-06T22:52:20.852+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [onPool-worker-2] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
-2026-01-06T22:52:20.865+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [nio-8081-exec-3] i.m.client.LifecycleInitializer          : Joining previous initialization
-2026-01-06T22:52:20.867+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [nio-8081-exec-3] i.m.spec.McpClientSession                : Sending message for method tools/list
-2026-01-06T22:52:20.867+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [nio-8081-exec-3] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCRequest[jsonrpc=2.0, method=tools/list, id=ce571395-1, params=PaginatedRequest[cursor=null, meta=null]]
-2026-01-06T22:52:20.950+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-2-Worker-4] .m.c.t.HttpClientStreamableHttpTransport : Received SSE stream response, using line subscriber
-2026-01-06T22:52:20.950+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-2-Worker-4] io.modelcontextprotocol.spec.McpSchema   : Received JSON message: {"jsonrpc":"2.0","id":"ce571395-1","result":{"tools":[{"name":"getOrders","title":"getOrders","description":"Récupère la liste de toutes les commandes","inputSchema":{"type":"object","properties":{},"required":[]},"annotations":{"title":"","readOnlyHint":false,"destructiveHint":true,"idempotentHint":false,"openWorldHint":true}},{"name":"getOrderDetails","title":"getOrderDetails","description":"Récupère les détails d'une commande (client + produits) via son ID","inputSchema":{"type":"object","properties":{"id":{"type":"integer","format":"int64","description":"ID de la commande"}},"required":["id"]},"annotations":{"title":"","readOnlyHint":false,"destructiveHint":true,"idempotentHint":false,"openWorldHint":true}}]}}
-2026-01-06T22:52:20.951+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-2-Worker-4] .m.c.t.HttpClientStreamableHttpTransport : Connected stream 1
-2026-01-06T22:52:20.951+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-2-Worker-4] i.m.spec.DefaultMcpTransportStream       : Updating last id null -> 85bf288b-82c9-46fd-a2e4-ae9d022231ec for stream 1
-2026-01-06T22:52:20.951+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-2-Worker-4] i.m.spec.McpClientSession                : Received response: JSONRPCResponse[jsonrpc=2.0, id=ce571395-1, result={tools=[{name=getOrders, title=getOrders, description=Récupère la liste de toutes les commandes, inputSchema={type=object, properties={}, required=[]}, annotations={title=, readOnlyHint=false, destructiveHint=true, idempotentHint=false, openWorldHint=true}}, {name=getOrderDetails, title=getOrderDetails, description=Récupère les détails d'une commande (client + produits) via son ID, inputSchema={type=object, properties={id={type=integer, format=int64, description=ID de la commande}}, required=[id]}, annotations={title=, readOnlyHint=false, destructiveHint=true, idempotentHint=false, openWorldHint=true}}]}, error=null]
-2026-01-06T22:52:20.952+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [nio-8081-exec-3] i.m.client.LifecycleInitializer          : Joining previous initialization
-2026-01-06T22:52:20.952+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [nio-8081-exec-3] i.m.spec.McpClientSession                : Sending message for method tools/list
-2026-01-06T22:52:20.952+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [nio-8081-exec-3] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCRequest[jsonrpc=2.0, method=tools/list, id=f6d3861a-1, params=PaginatedRequest[cursor=null, meta=null]]
-2026-01-06T22:52:20.964+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-2-Worker-4] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
-2026-01-06T22:52:20.965+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [onPool-worker-2] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
-2026-01-06T22:52:21.042+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-3-Worker-4] .m.c.t.HttpClientStreamableHttpTransport : Received SSE stream response, using line subscriber
-2026-01-06T22:52:21.043+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-3-Worker-4] io.modelcontextprotocol.spec.McpSchema   : Received JSON message: {"jsonrpc":"2.0","id":"f6d3861a-1","result":{"tools":[{"name":"getClient","title":"getClient","description":"Récupère un client via son ID","inputSchema":{"type":"object","properties":{"id":{"type":"integer","format":"int64","description":"ID du client"}},"required":["id"]},"annotations":{"title":"","readOnlyHint":false,"destructiveHint":true,"idempotentHint":false,"openWorldHint":true}},{"name":"getClients","title":"getClients","description":"Récupère la liste de tous les clients","inputSchema":{"type":"object","properties":{},"required":[]},"annotations":{"title":"","readOnlyHint":false,"destructiveHint":true,"idempotentHint":false,"openWorldHint":true}}]}}
-2026-01-06T22:52:21.043+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-3-Worker-4] .m.c.t.HttpClientStreamableHttpTransport : Connected stream 2
-2026-01-06T22:52:21.043+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-3-Worker-4] i.m.spec.DefaultMcpTransportStream       : Updating last id null -> caaa7b26-f860-4207-844c-96c5c27d43b4 for stream 2
-2026-01-06T22:52:21.043+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-3-Worker-4] i.m.spec.McpClientSession                : Received response: JSONRPCResponse[jsonrpc=2.0, id=f6d3861a-1, result={tools=[{name=getClient, title=getClient, description=Récupère un client via son ID, inputSchema={type=object, properties={id={type=integer, format=int64, description=ID du client}}, required=[id]}, annotations={title=, readOnlyHint=false, destructiveHint=true, idempotentHint=false, openWorldHint=true}}, {name=getClients, title=getClients, description=Récupère la liste de tous les clients, inputSchema={type=object, properties={}, required=[]}, annotations={title=, readOnlyHint=false, destructiveHint=true, idempotentHint=false, openWorldHint=true}}]}, error=null]
-2026-01-06T22:52:21.050+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-3-Worker-4] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
-2026-01-06T22:52:21.050+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [onPool-worker-2] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
-2026-01-06T22:52:23.487+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [nio-8081-exec-3] o.s.a.m.tool.DefaultToolCallingManager   : Executing tool call: getProducts
-2026-01-06T22:52:23.493+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [nio-8081-exec-3] i.m.client.LifecycleInitializer          : Joining previous initialization
-2026-01-06T22:52:23.496+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [nio-8081-exec-3] i.m.spec.McpClientSession                : Sending message for method tools/call
-2026-01-06T22:52:23.496+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [nio-8081-exec-3] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCRequest[jsonrpc=2.0, method=tools/call, id=9853abfa-2, params=CallToolRequest[name=getProducts, arguments={}, meta={}]]
-2026-01-06T22:52:23.667+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-5] .m.c.t.HttpClientStreamableHttpTransport : Received SSE stream response, using line subscriber
-2026-01-06T22:52:23.667+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-5] io.modelcontextprotocol.spec.McpSchema   : Received JSON message: {"jsonrpc":"2.0","id":"9853abfa-2","result":{"content":[{"type":"text","text":"[{\"id\":1,\"nom\":\"Ordinateur Portable\",\"prix\":899.99},{\"id\":2,\"nom\":\"Souris Sans Fil\",\"prix\":29.99},{\"id\":3,\"nom\":\"Clavier Mécanique\",\"prix\":149.99},{\"id\":4,\"nom\":\"Écran 27 pouces\",\"prix\":299.99},{\"id\":5,\"nom\":\"Casque Audio\",\"prix\":79.99},{\"id\":6,\"nom\":\"Webcam HD\",\"prix\":59.99},{\"id\":7,\"nom\":\"USB 64GB\",\"prix\":19.99},{\"id\":8,\"nom\":\"Disque Dur 1TB\",\"prix\":89.99},{\"id\":9,\"nom\":\"Imprimante Laser\",\"prix\":199.99},{\"id\":10,\"nom\":\"PC Portable Dell XPS\",\"prix\":5000.0},{\"id\":11,\"nom\":\"PC Portable Dell\",\"prix\":5000.0},{\"id\":12,\"nom\":\"Clavier RGB\",\"prix\":150.0},{\"id\":13,\"nom\":\"TestPC\",\"prix\":50.0},{\"id\":14,\"nom\":\"iphone \",\"prix\":2344.0}]"}],"isError":false}}
-2026-01-06T22:52:23.668+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-5] .m.c.t.HttpClientStreamableHttpTransport : Connected stream 3
-2026-01-06T22:52:23.668+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-5] i.m.spec.DefaultMcpTransportStream       : Updating last id null -> 55e4b2d3-722b-4830-99ab-8a2a7f918edc for stream 3
-2026-01-06T22:52:23.668+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-5] i.m.spec.McpClientSession                : Received response: JSONRPCResponse[jsonrpc=2.0, id=9853abfa-2, result={content=[{type=text, text=[{"id":1,"nom":"Ordinateur Portable","prix":899.99},{"id":2,"nom":"Souris Sans Fil","prix":29.99},{"id":3,"nom":"Clavier Mécanique","prix":149.99},{"id":4,"nom":"Écran 27 pouces","prix":299.99},{"id":5,"nom":"Casque Audio","prix":79.99},{"id":6,"nom":"Webcam HD","prix":59.99},{"id":7,"nom":"USB 64GB","prix":19.99},{"id":8,"nom":"Disque Dur 1TB","prix":89.99},{"id":9,"nom":"Imprimante Laser","prix":199.99},{"id":10,"nom":"PC Portable Dell XPS","prix":5000.0},{"id":11,"nom":"PC Portable Dell","prix":5000.0},{"id":12,"nom":"Clavier RGB","prix":150.0},{"id":13,"nom":"TestPC","prix":50.0},{"id":14,"nom":"iphone ","prix":2344.0}]}], isError=false}, error=null]
-2026-01-06T22:52:23.682+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ient-1-Worker-5] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
-2026-01-06T22:52:23.682+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [onPool-worker-2] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
-2026-01-06T22:53:51.589+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [ionShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application AGENT-IA-SERVICE with eureka with status DOWN
-2026-01-06T22:53:51.601+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1767736431600, current=DOWN, previous=UP]
-2026-01-06T22:53:51.603+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081: registering service...
-2026-01-06T22:53:51.693+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081 - registration status: 204
-2026-01-06T22:53:52.001+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [onPool-worker-3] .m.c.t.HttpClientStreamableHttpTransport : Handling exception for session 55e4b2d3-722b-4830-99ab-8a2a7f918edc
-
-java.io.IOException: HTTP/1.1 header parser received no bytes
-	at java.net.http/jdk.internal.net.http.common.Utils.wrapWithExtraDetail(Utils.java:372) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.Http1Response$HeadersReader.onReadError(Http1Response.java:675) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.Http1AsyncReceiver.checkForErrors(Http1AsyncReceiver.java:302) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.Http1AsyncReceiver.flush(Http1AsyncReceiver.java:268) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$LockingRestartableTask.run(SequentialScheduler.java:205) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$CompleteRestartableTask.run(SequentialScheduler.java:149) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$SchedulableTask.run(SequentialScheduler.java:230) ~[java.net.http:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
-	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
-Caused by: java.net.SocketException: Connection reset
-	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:394) ~[na:na]
-	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:426) ~[na:na]
-	at java.net.http/jdk.internal.net.http.SocketTube.readAvailable(SocketTube.java:1170) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$InternalReadSubscription.read(SocketTube.java:833) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$SocketFlowTask.run(SocketTube.java:181) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$SchedulableTask.run(SequentialScheduler.java:230) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler.runOrSchedule(SequentialScheduler.java:303) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler.runOrSchedule(SequentialScheduler.java:256) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$InternalReadSubscription.signalReadable(SocketTube.java:774) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$ReadEvent.signalEvent(SocketTube.java:957) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$SocketFlowEvent.handle(SocketTube.java:253) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.handleEvent(HttpClientImpl.java:984) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.lambda$run$3(HttpClientImpl.java:939) ~[java.net.http:na]
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) ~[na:na]
-	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:939) ~[java.net.http:na]
-
-2026-01-06T22:53:52.057+01:00  WARN 1698 --- [AGENT-IA-SERVICE] [onPool-worker-3] i.m.client.LifecycleInitializer          : Handling exception
+2026-01-06T23:44:46.048+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] i.m.spec.McpClientSession                : Received response: JSONRPCResponse[jsonrpc=2.0, id=9706f881-0, result={protocolVersion=2025-06-18, capabilities={completions={}, logging={}, prompts={listChanged=true}, resources={subscribe=false, listChanged=true}, tools={listChanged=true}}, serverInfo={name=mcp-server, version=1.0.0}}, error=null]
+2026-01-06T23:44:46.049+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] i.m.client.LifecycleInitializer          : Server response with Protocol: 2025-06-18, Capabilities: ServerCapabilities[completions=CompletionCapabilities[], experimental=null, logging=LoggingCapabilities[], prompts=PromptCapabilities[listChanged=true], resources=ResourceCapabilities[subscribe=false, listChanged=true], tools=ToolCapabilities[listChanged=true]], Info: Implementation[name=mcp-server, title=null, version=1.0.0] and Instructions null
+2026-01-06T23:44:46.050+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCNotification[jsonrpc=2.0, method=notifications/initialized, params=null]
+2026-01-06T23:44:46.050+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
+2026-01-06T23:44:46.051+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [onPool-worker-1] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
+2026-01-06T23:44:46.064+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : Received Bodyless response, using discarding subscriber
+2026-01-06T23:44:46.064+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : No body returned for POST in session 7106201a-69e0-4191-b4a9-03ae742cf10a
+2026-01-06T23:44:46.065+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-3-Worker-0] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
+2026-01-06T23:44:46.065+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [onPool-worker-1] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
+2026-01-06T23:44:46.080+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [           main] o.s.a.m.t.a.ToolCallingAutoConfiguration : Cannot load class: org.springframework.security.oauth2.client.ClientAuthorizationException
+2026-01-06T23:44:46.294+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] DiscoveryClientOptionalArgsConfiguration : Eureka HTTP Client uses RestTemplate.
+2026-01-06T23:44:46.315+01:00  WARN 23156 --- [AGENT-IA-SERVICE] [           main] iguration$LoadBalancerCaffeineWarnLogger : Spring Cloud LoadBalancer is currently working with the default cache. While this cache implementation is useful for development and tests, it's recommended to use Caffeine cache in production.You can switch to using Caffeine cache, by adding it and org.springframework.cache.caffeine.CaffeineCacheManager to the classpath.
+2026-01-06T23:44:46.321+01:00  WARN 23156 --- [AGENT-IA-SERVICE] [           main] o.s.m.p.s.SyncMcpSamplingProvider        : No sampling methods found
+2026-01-06T23:44:46.322+01:00  WARN 23156 --- [AGENT-IA-SERVICE] [           main] o.s.m.p.e.SyncMcpElicitationProvider     : No elicitation methods found
+2026-01-06T23:44:46.355+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] o.s.c.n.eureka.InstanceInfoFactory       : Setting initial instance status as: STARTING
+2026-01-06T23:44:46.374+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Initializing Eureka in region us-east-1
+2026-01-06T23:44:46.377+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-01-06T23:44:46.382+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-01-06T23:44:46.382+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-01-06T23:44:46.382+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-01-06T23:44:46.382+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-01-06T23:44:46.382+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-01-06T23:44:46.382+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Application version is -1: true
+2026-01-06T23:44:46.382+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-01-06T23:44:46.512+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-01-06T23:44:46.514+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Starting heartbeat executor: renew interval is: 30
+2026-01-06T23:44:46.520+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] c.n.discovery.InstanceInfoReplicator     : InstanceInfoReplicator onDemand update allowed rate per min is 4
+2026-01-06T23:44:46.521+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Discovery Client initialized at timestamp 1767739486521 with initial instances count: 0
+2026-01-06T23:44:46.523+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] o.s.c.n.e.s.EurekaServiceRegistry        : Registering application AGENT-IA-SERVICE with eureka with status UP
+2026-01-06T23:44:46.524+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1767739486524, current=UP, previous=STARTING]
+2026-01-06T23:44:46.525+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081: registering service...
+2026-01-06T23:44:46.551+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081 - registration status: 204
+2026-01-06T23:44:46.667+01:00 ERROR 23156 --- [AGENT-IA-SERVICE] [           main] i.n.r.d.DnsServerAddressStreamProviders  : Unable to load io.netty.resolver.dns.macos.MacOSDnsServerAddressStreamProvider, fallback to system defaults. This may result in incorrect DNS resolutions on MacOS. Check whether you have a dependency on 'io.netty:netty-resolver-dns-native-macos'. Use DEBUG level to see the full stack: java.lang.UnsatisfiedLinkError: failed to load the required native library
+2026-01-06T23:44:46.687+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port 8081 (http) with context path '/'
+2026-01-06T23:44:46.690+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] .s.c.n.e.s.EurekaAutoServiceRegistration : Updating port to 8081
+2026-01-06T23:44:46.716+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [           main] c.e.agentia.AgentIaServiceApplication    : Started AgentIaServiceApplication in 3.881 seconds (process running for 4.503)
+2026-01-06T23:45:16.518+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Disable delta property : false
+2026-01-06T23:45:16.521+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Single vip registry refresh property : null
+2026-01-06T23:45:16.521+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Force full registry fetch : false
+2026-01-06T23:45:16.521+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Application is null : false
+2026-01-06T23:45:16.521+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Registered Applications size is zero : true
+2026-01-06T23:45:16.521+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Application version is -1: false
+2026-01-06T23:45:16.522+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : Getting all instance registry info from the eureka server
+2026-01-06T23:45:16.543+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : The response status is 200
+2026-01-06T23:45:16.740+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] o.a.c.c.C.[Tomcat].[localhost].[/]       : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2026-01-06T23:45:16.740+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Initializing Servlet 'dispatcherServlet'
+2026-01-06T23:45:16.742+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] o.s.web.servlet.DispatcherServlet        : Completed initialization in 2 ms
+2026-01-06T23:45:16.868+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] i.m.client.LifecycleInitializer          : Joining previous initialization
+2026-01-06T23:45:16.870+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] i.m.spec.McpClientSession                : Sending message for method tools/list
+2026-01-06T23:45:16.870+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCRequest[jsonrpc=2.0, method=tools/list, id=a272eed8-1, params=PaginatedRequest[cursor=null, meta=null]]
+2026-01-06T23:45:16.885+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-3] .m.c.t.HttpClientStreamableHttpTransport : Received SSE stream response, using line subscriber
+2026-01-06T23:45:16.887+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-3] io.modelcontextprotocol.spec.McpSchema   : Received JSON message: {"jsonrpc":"2.0","id":"a272eed8-1","result":{"tools":[{"name":"getProducts","title":"getProducts","description":"Récupère la liste de tous les produits","inputSchema":{"type":"object","properties":{},"required":[]},"annotations":{"title":"","readOnlyHint":false,"destructiveHint":true,"idempotentHint":false,"openWorldHint":true}},{"name":"createProduct","title":"createProduct","description":"Crée un nouveau produit avec un nom et un prix","inputSchema":{"type":"object","properties":{"nom":{"type":"string","description":"Nom du produit"},"prix":{"type":"number","format":"double","description":"Prix du produit"}},"required":["nom","prix"]},"annotations":{"title":"","readOnlyHint":false,"destructiveHint":true,"idempotentHint":false,"openWorldHint":true}},{"name":"getProduct","title":"getProduct","description":"Récupère un produit via son ID","inputSchema":{"type":"object","properties":{"id":{"type":"integer","format":"int64","description":"ID du produit"}},"required":["id"]},"annotations":{"title":"","readOnlyHint":false,"destructiveHint":true,"idempotentHint":false,"openWorldHint":true}}]}}
+2026-01-06T23:45:16.888+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-3] .m.c.t.HttpClientStreamableHttpTransport : Connected stream 0
+2026-01-06T23:45:16.889+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-3] i.m.spec.DefaultMcpTransportStream       : Updating last id null -> 9a2840a9-baad-4228-ab1d-0ee61eceaa38 for stream 0
+2026-01-06T23:45:16.889+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-3] i.m.spec.McpClientSession                : Received response: JSONRPCResponse[jsonrpc=2.0, id=a272eed8-1, result={tools=[{name=getProducts, title=getProducts, description=Récupère la liste de tous les produits, inputSchema={type=object, properties={}, required=[]}, annotations={title=, readOnlyHint=false, destructiveHint=true, idempotentHint=false, openWorldHint=true}}, {name=createProduct, title=createProduct, description=Crée un nouveau produit avec un nom et un prix, inputSchema={type=object, properties={nom={type=string, description=Nom du produit}, prix={type=number, format=double, description=Prix du produit}}, required=[nom, prix]}, annotations={title=, readOnlyHint=false, destructiveHint=true, idempotentHint=false, openWorldHint=true}}, {name=getProduct, title=getProduct, description=Récupère un produit via son ID, inputSchema={type=object, properties={id={type=integer, format=int64, description=ID du produit}}, required=[id]}, annotations={title=, readOnlyHint=false, destructiveHint=true, idempotentHint=false, openWorldHint=true}}]}, error=null]
+2026-01-06T23:45:16.894+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-3] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
+2026-01-06T23:45:16.894+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [onPool-worker-1] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
+2026-01-06T23:45:16.900+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] i.m.client.LifecycleInitializer          : Joining previous initialization
+2026-01-06T23:45:16.900+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] i.m.spec.McpClientSession                : Sending message for method tools/list
+2026-01-06T23:45:16.900+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCRequest[jsonrpc=2.0, method=tools/list, id=92560870-1, params=PaginatedRequest[cursor=null, meta=null]]
+2026-01-06T23:45:16.922+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-1] .m.c.t.HttpClientStreamableHttpTransport : Received SSE stream response, using line subscriber
+2026-01-06T23:45:16.923+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-1] io.modelcontextprotocol.spec.McpSchema   : Received JSON message: {"jsonrpc":"2.0","id":"92560870-1","result":{"tools":[{"name":"getOrderDetails","title":"getOrderDetails","description":"Récupère les détails d'une commande (client + produits) via son ID","inputSchema":{"type":"object","properties":{"id":{"type":"integer","format":"int64","description":"ID de la commande"}},"required":["id"]},"annotations":{"title":"","readOnlyHint":false,"destructiveHint":true,"idempotentHint":false,"openWorldHint":true}},{"name":"getOrders","title":"getOrders","description":"Récupère la liste des 20 dernières commandes avec résumé: id, date, idClient, total, nbProduits","inputSchema":{"type":"object","properties":{},"required":[]},"annotations":{"title":"","readOnlyHint":false,"destructiveHint":true,"idempotentHint":false,"openWorldHint":true}}]}}
+2026-01-06T23:45:16.923+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-1] .m.c.t.HttpClientStreamableHttpTransport : Connected stream 1
+2026-01-06T23:45:16.923+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-1] i.m.spec.DefaultMcpTransportStream       : Updating last id null -> 268f648d-99fc-4347-962a-a9c64a0b8d7a for stream 1
+2026-01-06T23:45:16.923+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-1] i.m.spec.McpClientSession                : Received response: JSONRPCResponse[jsonrpc=2.0, id=92560870-1, result={tools=[{name=getOrderDetails, title=getOrderDetails, description=Récupère les détails d'une commande (client + produits) via son ID, inputSchema={type=object, properties={id={type=integer, format=int64, description=ID de la commande}}, required=[id]}, annotations={title=, readOnlyHint=false, destructiveHint=true, idempotentHint=false, openWorldHint=true}}, {name=getOrders, title=getOrders, description=Récupère la liste des 20 dernières commandes avec résumé: id, date, idClient, total, nbProduits, inputSchema={type=object, properties={}, required=[]}, annotations={title=, readOnlyHint=false, destructiveHint=true, idempotentHint=false, openWorldHint=true}}]}, error=null]
+2026-01-06T23:45:16.923+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] i.m.client.LifecycleInitializer          : Joining previous initialization
+2026-01-06T23:45:16.923+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] i.m.spec.McpClientSession                : Sending message for method tools/list
+2026-01-06T23:45:16.924+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCRequest[jsonrpc=2.0, method=tools/list, id=9706f881-1, params=PaginatedRequest[cursor=null, meta=null]]
+2026-01-06T23:45:16.928+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-1] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
+2026-01-06T23:45:16.928+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [onPool-worker-1] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
+2026-01-06T23:45:16.937+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-3-Worker-2] .m.c.t.HttpClientStreamableHttpTransport : Received SSE stream response, using line subscriber
+2026-01-06T23:45:16.937+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-3-Worker-2] io.modelcontextprotocol.spec.McpSchema   : Received JSON message: {"jsonrpc":"2.0","id":"9706f881-1","result":{"tools":[{"name":"getClient","title":"getClient","description":"Récupère un client via son ID","inputSchema":{"type":"object","properties":{"id":{"type":"integer","format":"int64","description":"ID du client"}},"required":["id"]},"annotations":{"title":"","readOnlyHint":false,"destructiveHint":true,"idempotentHint":false,"openWorldHint":true}},{"name":"getClients","title":"getClients","description":"Récupère la liste de tous les clients","inputSchema":{"type":"object","properties":{},"required":[]},"annotations":{"title":"","readOnlyHint":false,"destructiveHint":true,"idempotentHint":false,"openWorldHint":true}}]}}
+2026-01-06T23:45:16.937+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-3-Worker-2] .m.c.t.HttpClientStreamableHttpTransport : Connected stream 2
+2026-01-06T23:45:16.937+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-3-Worker-2] i.m.spec.DefaultMcpTransportStream       : Updating last id null -> 7106201a-69e0-4191-b4a9-03ae742cf10a for stream 2
+2026-01-06T23:45:16.937+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-3-Worker-2] i.m.spec.McpClientSession                : Received response: JSONRPCResponse[jsonrpc=2.0, id=9706f881-1, result={tools=[{name=getClient, title=getClient, description=Récupère un client via son ID, inputSchema={type=object, properties={id={type=integer, format=int64, description=ID du client}}, required=[id]}, annotations={title=, readOnlyHint=false, destructiveHint=true, idempotentHint=false, openWorldHint=true}}, {name=getClients, title=getClients, description=Récupère la liste de tous les clients, inputSchema={type=object, properties={}, required=[]}, annotations={title=, readOnlyHint=false, destructiveHint=true, idempotentHint=false, openWorldHint=true}}]}, error=null]
+2026-01-06T23:45:16.941+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-3-Worker-2] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
+2026-01-06T23:45:16.941+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [onPool-worker-1] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
+2026-01-06T23:45:21.600+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] o.s.a.m.tool.DefaultToolCallingManager   : Executing tool call: getProducts
+2026-01-06T23:45:21.605+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] i.m.client.LifecycleInitializer          : Joining previous initialization
+2026-01-06T23:45:21.606+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] i.m.spec.McpClientSession                : Sending message for method tools/call
+2026-01-06T23:45:21.606+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-1] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCRequest[jsonrpc=2.0, method=tools/call, id=a272eed8-2, params=CallToolRequest[name=getProducts, arguments={}, meta={}]]
+2026-01-06T23:45:21.686+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-2] .m.c.t.HttpClientStreamableHttpTransport : Received SSE stream response, using line subscriber
+2026-01-06T23:45:21.686+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-2] io.modelcontextprotocol.spec.McpSchema   : Received JSON message: {"jsonrpc":"2.0","id":"a272eed8-2","result":{"content":[{"type":"text","text":"[{\"id\":1,\"nom\":\"Ordinateur Portable\",\"prix\":899.99},{\"id\":2,\"nom\":\"Souris Sans Fil\",\"prix\":29.99},{\"id\":3,\"nom\":\"Clavier Mécanique\",\"prix\":149.99},{\"id\":4,\"nom\":\"Écran 27 pouces\",\"prix\":299.99},{\"id\":5,\"nom\":\"Casque Audio\",\"prix\":79.99},{\"id\":6,\"nom\":\"Webcam HD\",\"prix\":59.99},{\"id\":7,\"nom\":\"USB 64GB\",\"prix\":19.99},{\"id\":8,\"nom\":\"Disque Dur 1TB\",\"prix\":89.99},{\"id\":9,\"nom\":\"Imprimante Laser\",\"prix\":199.99},{\"id\":10,\"nom\":\"PC Portable Dell XPS\",\"prix\":5000.0},{\"id\":11,\"nom\":\"PC Portable Dell\",\"prix\":5000.0},{\"id\":12,\"nom\":\"Clavier RGB\",\"prix\":150.0},{\"id\":13,\"nom\":\"TestPC\",\"prix\":50.0},{\"id\":14,\"nom\":\"iphone \",\"prix\":2344.0},{\"id\":16,\"nom\":\"arij\",\"prix\":1.0}]"}],"isError":false}}
+2026-01-06T23:45:21.687+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-2] .m.c.t.HttpClientStreamableHttpTransport : Connected stream 3
+2026-01-06T23:45:21.687+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-2] i.m.spec.DefaultMcpTransportStream       : Updating last id null -> 9a2840a9-baad-4228-ab1d-0ee61eceaa38 for stream 3
+2026-01-06T23:45:21.687+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-2] i.m.spec.McpClientSession                : Received response: JSONRPCResponse[jsonrpc=2.0, id=a272eed8-2, result={content=[{type=text, text=[{"id":1,"nom":"Ordinateur Portable","prix":899.99},{"id":2,"nom":"Souris Sans Fil","prix":29.99},{"id":3,"nom":"Clavier Mécanique","prix":149.99},{"id":4,"nom":"Écran 27 pouces","prix":299.99},{"id":5,"nom":"Casque Audio","prix":79.99},{"id":6,"nom":"Webcam HD","prix":59.99},{"id":7,"nom":"USB 64GB","prix":19.99},{"id":8,"nom":"Disque Dur 1TB","prix":89.99},{"id":9,"nom":"Imprimante Laser","prix":199.99},{"id":10,"nom":"PC Portable Dell XPS","prix":5000.0},{"id":11,"nom":"PC Portable Dell","prix":5000.0},{"id":12,"nom":"Clavier RGB","prix":150.0},{"id":13,"nom":"TestPC","prix":50.0},{"id":14,"nom":"iphone ","prix":2344.0},{"id":16,"nom":"arij","prix":1.0}]}], isError=false}, error=null]
+2026-01-06T23:45:21.696+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-2] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
+2026-01-06T23:45:21.697+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [onPool-worker-1] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
+2026-01-06T23:45:31.030+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-2] o.s.a.m.tool.DefaultToolCallingManager   : Executing tool call: getOrders
+2026-01-06T23:45:31.033+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-2] i.m.client.LifecycleInitializer          : Joining previous initialization
+2026-01-06T23:45:31.033+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-2] i.m.spec.McpClientSession                : Sending message for method tools/call
+2026-01-06T23:45:31.034+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-2] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCRequest[jsonrpc=2.0, method=tools/call, id=92560870-2, params=CallToolRequest[name=getOrders, arguments={}, meta={}]]
+2026-01-06T23:45:31.281+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-1] .m.c.t.HttpClientStreamableHttpTransport : Received SSE stream response, using line subscriber
+2026-01-06T23:45:31.281+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-1] io.modelcontextprotocol.spec.McpSchema   : Received JSON message: {"jsonrpc":"2.0","id":"92560870-2","result":{"content":[{"type":"text","text":"[{\"date\":\"2026-01-02T15:39:01.133+00:00\",\"total\":94379.43,\"idClient\":97,\"nbProduits\":12,\"id\":763},{\"date\":\"2026-01-02T15:39:01.135+00:00\",\"total\":85999.34,\"idClient\":98,\"nbProduits\":12,\"id\":764},{\"date\":\"2026-01-02T15:39:01.139+00:00\",\"total\":79449.5,\"idClient\":99,\"nbProduits\":12,\"id\":765},{\"date\":\"2026-01-02T15:39:01.142+00:00\",\"total\":67859.36,\"idClient\":100,\"nbProduits\":12,\"id\":766},{\"date\":\"2026-01-02T15:39:01.145+00:00\",\"total\":82539.55,\"idClient\":101,\"nbProduits\":12,\"id\":767},{\"date\":\"2026-01-02T15:39:01.149+00:00\",\"total\":45139.61,\"idClient\":102,\"nbProduits\":12,\"id\":768},{\"date\":\"2026-01-02T15:39:01.152+00:00\",\"total\":59579.4,\"idClient\":103,\"nbProduits\":12,\"id\":769},{\"date\":\"2026-01-02T15:39:01.155+00:00\",\"total\":56509.369999999995,\"idClient\":104,\"nbProduits\":12,\"id\":770},{\"date\":\"2026-01-02T15:39:01.157+00:00\",\"total\":84579.45999999999,\"idClient\":105,\"nbProduits\":12,\"id\":771},{\"date\":\"2026-01-02T15:39:01.160+00:00\",\"total\":63859.62,\"idClient\":106,\"nbProduits\":12,\"id\":772},{\"date\":\"2026-01-02T15:39:01.163+00:00\",\"total\":78329.52,\"idClient\":107,\"nbProduits\":12,\"id\":773},{\"date\":\"2026-01-02T15:39:01.166+00:00\",\"total\":31909.72,\"idClient\":108,\"nbProduits\":12,\"id\":774},{\"date\":\"2026-01-02T15:39:01.170+00:00\",\"total\":73389.6,\"idClient\":109,\"nbProduits\":12,\"id\":775},{\"date\":\"2026-01-02T15:39:01.173+00:00\",\"total\":103159.55,\"idClient\":110,\"nbProduits\":12,\"id\":776},{\"date\":\"2026-01-02T15:39:01.176+00:00\",\"total\":35159.51,\"idClient\":111,\"nbProduits\":12,\"id\":777},{\"date\":\"2026-01-02T15:39:01.180+00:00\",\"total\":84329.44,\"idClient\":112,\"nbProduits\":12,\"id\":778},{\"date\":\"2026-01-02T15:39:01.183+00:00\",\"total\":60609.46,\"idClient\":113,\"nbProduits\":12,\"id\":779},{\"date\":\"2026-01-02T15:39:01.186+00:00\",\"total\":66059.55,\"idClient\":114,\"nbProduits\":12,\"id\":780},{\"date\":\"2026-01-06T22:25:15.223+00:00\",\"total\":0.0,\"idClient\":null,\"nbProduits\":0,\"id\":781},{\"date\":\"2026-01-06T22:26:51.769+00:00\",\"total\":0.0,\"idClient\":null,\"nbProduits\":0,\"id\":782}]"}],"isError":false}}
+2026-01-06T23:45:31.282+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-1] .m.c.t.HttpClientStreamableHttpTransport : Connected stream 4
+2026-01-06T23:45:31.282+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-1] i.m.spec.DefaultMcpTransportStream       : Updating last id null -> 268f648d-99fc-4347-962a-a9c64a0b8d7a for stream 4
+2026-01-06T23:45:31.282+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-1] i.m.spec.McpClientSession                : Received response: JSONRPCResponse[jsonrpc=2.0, id=92560870-2, result={content=[{type=text, text=[{"date":"2026-01-02T15:39:01.133+00:00","total":94379.43,"idClient":97,"nbProduits":12,"id":763},{"date":"2026-01-02T15:39:01.135+00:00","total":85999.34,"idClient":98,"nbProduits":12,"id":764},{"date":"2026-01-02T15:39:01.139+00:00","total":79449.5,"idClient":99,"nbProduits":12,"id":765},{"date":"2026-01-02T15:39:01.142+00:00","total":67859.36,"idClient":100,"nbProduits":12,"id":766},{"date":"2026-01-02T15:39:01.145+00:00","total":82539.55,"idClient":101,"nbProduits":12,"id":767},{"date":"2026-01-02T15:39:01.149+00:00","total":45139.61,"idClient":102,"nbProduits":12,"id":768},{"date":"2026-01-02T15:39:01.152+00:00","total":59579.4,"idClient":103,"nbProduits":12,"id":769},{"date":"2026-01-02T15:39:01.155+00:00","total":56509.369999999995,"idClient":104,"nbProduits":12,"id":770},{"date":"2026-01-02T15:39:01.157+00:00","total":84579.45999999999,"idClient":105,"nbProduits":12,"id":771},{"date":"2026-01-02T15:39:01.160+00:00","total":63859.62,"idClient":106,"nbProduits":12,"id":772},{"date":"2026-01-02T15:39:01.163+00:00","total":78329.52,"idClient":107,"nbProduits":12,"id":773},{"date":"2026-01-02T15:39:01.166+00:00","total":31909.72,"idClient":108,"nbProduits":12,"id":774},{"date":"2026-01-02T15:39:01.170+00:00","total":73389.6,"idClient":109,"nbProduits":12,"id":775},{"date":"2026-01-02T15:39:01.173+00:00","total":103159.55,"idClient":110,"nbProduits":12,"id":776},{"date":"2026-01-02T15:39:01.176+00:00","total":35159.51,"idClient":111,"nbProduits":12,"id":777},{"date":"2026-01-02T15:39:01.180+00:00","total":84329.44,"idClient":112,"nbProduits":12,"id":778},{"date":"2026-01-02T15:39:01.183+00:00","total":60609.46,"idClient":113,"nbProduits":12,"id":779},{"date":"2026-01-02T15:39:01.186+00:00","total":66059.55,"idClient":114,"nbProduits":12,"id":780},{"date":"2026-01-06T22:25:15.223+00:00","total":0.0,"idClient":null,"nbProduits":0,"id":781},{"date":"2026-01-06T22:26:51.769+00:00","total":0.0,"idClient":null,"nbProduits":0,"id":782}]}], isError=false}, error=null]
+2026-01-06T23:45:31.282+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-2-Worker-1] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
+2026-01-06T23:45:31.283+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [onPool-worker-1] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
+2026-01-06T23:47:15.088+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [onPool-worker-2] .m.c.t.HttpClientStreamableHttpTransport : Handling exception for session 268f648d-99fc-4347-962a-a9c64a0b8d7a
 
 java.io.IOException: HTTP/1.1 header parser received no bytes
 	at java.net.http/jdk.internal.net.http.common.Utils.wrapWithExtraDetail(Utils.java:372) ~[java.net.http:na]
@@ -213,7 +195,7 @@ Caused by: java.net.SocketException: Connection reset
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) ~[na:na]
 	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:939) ~[java.net.http:na]
 
-2026-01-06T22:53:52.210+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [onPool-worker-3] .m.c.t.HttpClientStreamableHttpTransport : Handling exception for session 85bf288b-82c9-46fd-a2e4-ae9d022231ec
+2026-01-06T23:47:15.096+01:00  WARN 23156 --- [AGENT-IA-SERVICE] [onPool-worker-2] i.m.client.LifecycleInitializer          : Handling exception
 
 java.io.IOException: HTTP/1.1 header parser received no bytes
 	at java.net.http/jdk.internal.net.http.common.Utils.wrapWithExtraDetail(Utils.java:372) ~[java.net.http:na]
@@ -243,589 +225,39 @@ Caused by: java.net.SocketException: Connection reset
 	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) ~[na:na]
 	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:939) ~[java.net.http:na]
 
-2026-01-06T22:53:52.211+01:00  WARN 1698 --- [AGENT-IA-SERVICE] [onPool-worker-3] i.m.client.LifecycleInitializer          : Handling exception
-
-java.io.IOException: HTTP/1.1 header parser received no bytes
-	at java.net.http/jdk.internal.net.http.common.Utils.wrapWithExtraDetail(Utils.java:372) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.Http1Response$HeadersReader.onReadError(Http1Response.java:675) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.Http1AsyncReceiver.checkForErrors(Http1AsyncReceiver.java:302) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.Http1AsyncReceiver.flush(Http1AsyncReceiver.java:268) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$LockingRestartableTask.run(SequentialScheduler.java:205) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$CompleteRestartableTask.run(SequentialScheduler.java:149) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$SchedulableTask.run(SequentialScheduler.java:230) ~[java.net.http:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
-	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
-Caused by: java.net.SocketException: Connection reset
-	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:394) ~[na:na]
-	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:426) ~[na:na]
-	at java.net.http/jdk.internal.net.http.SocketTube.readAvailable(SocketTube.java:1170) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$InternalReadSubscription.read(SocketTube.java:833) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$SocketFlowTask.run(SocketTube.java:181) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$SchedulableTask.run(SequentialScheduler.java:230) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler.runOrSchedule(SequentialScheduler.java:303) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler.runOrSchedule(SequentialScheduler.java:256) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$InternalReadSubscription.signalReadable(SocketTube.java:774) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$ReadEvent.signalEvent(SocketTube.java:957) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$SocketFlowEvent.handle(SocketTube.java:253) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.handleEvent(HttpClientImpl.java:984) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.lambda$run$3(HttpClientImpl.java:939) ~[java.net.http:na]
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) ~[na:na]
-	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:939) ~[java.net.http:na]
-
-2026-01-06T22:53:52.252+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [onPool-worker-3] .m.c.t.HttpClientStreamableHttpTransport : Handling exception for session caaa7b26-f860-4207-844c-96c5c27d43b4
-
-java.io.IOException: HTTP/1.1 header parser received no bytes
-	at java.net.http/jdk.internal.net.http.common.Utils.wrapWithExtraDetail(Utils.java:372) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.Http1Response$HeadersReader.onReadError(Http1Response.java:675) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.Http1AsyncReceiver.checkForErrors(Http1AsyncReceiver.java:302) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.Http1AsyncReceiver.flush(Http1AsyncReceiver.java:268) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$LockingRestartableTask.run(SequentialScheduler.java:205) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$CompleteRestartableTask.run(SequentialScheduler.java:149) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$SchedulableTask.run(SequentialScheduler.java:230) ~[java.net.http:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
-	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
-Caused by: java.net.SocketException: Connection reset
-	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:394) ~[na:na]
-	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:426) ~[na:na]
-	at java.net.http/jdk.internal.net.http.SocketTube.readAvailable(SocketTube.java:1170) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$InternalReadSubscription.read(SocketTube.java:833) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$SocketFlowTask.run(SocketTube.java:181) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$SchedulableTask.run(SequentialScheduler.java:230) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler.runOrSchedule(SequentialScheduler.java:303) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler.runOrSchedule(SequentialScheduler.java:256) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$InternalReadSubscription.signalReadable(SocketTube.java:774) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$ReadEvent.signalEvent(SocketTube.java:957) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$SocketFlowEvent.handle(SocketTube.java:253) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.handleEvent(HttpClientImpl.java:984) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.lambda$run$3(HttpClientImpl.java:939) ~[java.net.http:na]
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) ~[na:na]
-	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:939) ~[java.net.http:na]
-
-2026-01-06T22:53:52.253+01:00  WARN 1698 --- [AGENT-IA-SERVICE] [onPool-worker-3] i.m.client.LifecycleInitializer          : Handling exception
-
-java.io.IOException: HTTP/1.1 header parser received no bytes
-	at java.net.http/jdk.internal.net.http.common.Utils.wrapWithExtraDetail(Utils.java:372) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.Http1Response$HeadersReader.onReadError(Http1Response.java:675) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.Http1AsyncReceiver.checkForErrors(Http1AsyncReceiver.java:302) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.Http1AsyncReceiver.flush(Http1AsyncReceiver.java:268) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$LockingRestartableTask.run(SequentialScheduler.java:205) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$CompleteRestartableTask.run(SequentialScheduler.java:149) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$SchedulableTask.run(SequentialScheduler.java:230) ~[java.net.http:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
-	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
-Caused by: java.net.SocketException: Connection reset
-	at java.base/sun.nio.ch.SocketChannelImpl.throwConnectionReset(SocketChannelImpl.java:394) ~[na:na]
-	at java.base/sun.nio.ch.SocketChannelImpl.read(SocketChannelImpl.java:426) ~[na:na]
-	at java.net.http/jdk.internal.net.http.SocketTube.readAvailable(SocketTube.java:1170) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$InternalReadSubscription.read(SocketTube.java:833) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$SocketFlowTask.run(SocketTube.java:181) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler$SchedulableTask.run(SequentialScheduler.java:230) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler.runOrSchedule(SequentialScheduler.java:303) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.common.SequentialScheduler.runOrSchedule(SequentialScheduler.java:256) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$InternalReadSubscription.signalReadable(SocketTube.java:774) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$InternalReadPublisher$ReadEvent.signalEvent(SocketTube.java:957) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.SocketTube$SocketFlowEvent.handle(SocketTube.java:253) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.handleEvent(HttpClientImpl.java:984) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.lambda$run$3(HttpClientImpl.java:939) ~[java.net.http:na]
-	at java.base/java.util.ArrayList.forEach(ArrayList.java:1511) ~[na:na]
-	at java.net.http/jdk.internal.net.http.HttpClientImpl$SelectorManager.run(HttpClientImpl.java:939) ~[java.net.http:na]
-
-2026-01-06T22:53:52.723+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [beatExecutor-%d] o.a.h.c.h.i.c.HttpRequestRetryExec       : Recoverable I/O exception (org.apache.hc.core5.http.NoHttpResponseException) caught when processing request to {}->http://localhost:8761
-2026-01-06T22:53:52.733+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [reshExecutor-%d] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/} exception=I/O error on GET request for "http://localhost:8761/eureka/apps/delta": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on GET request for "http://localhost:8761/eureka/apps/delta": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
-	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:915)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:895)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:672)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.getApplicationsInternal(RestTemplateEurekaHttpClient.java:145)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.getDelta(RestTemplateEurekaHttpClient.java:155)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$7.execute(EurekaHttpClientDecorator.java:152)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:91)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getDelta(EurekaHttpClientDecorator.java:149)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$7.execute(EurekaHttpClientDecorator.java:152)
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getDelta(EurekaHttpClientDecorator.java:149)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$7.execute(EurekaHttpClientDecorator.java:152)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getDelta(EurekaHttpClientDecorator.java:149)
-	at com.netflix.discovery.DiscoveryClient.getAndUpdateDelta(DiscoveryClient.java:1080)
-	at com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:963)
-	at com.netflix.discovery.DiscoveryClient.refreshRegistry(DiscoveryClient.java:1473)
-	at com.netflix.discovery.DiscoveryClient$CacheRefreshThread.run(DiscoveryClient.java:1441)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:554)
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
-	at java.base/java.net.Socket.connect(Socket.java:633)
-	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.lambda$connectSocket$0(PlainConnectionSocketFactory.java:91)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
-	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:90)
-	at org.apache.hc.client5.http.socket.ConnectionSocketFactory.connectSocket(ConnectionSocketFactory.java:123)
-	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:189)
-	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:450)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:162)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:172)
-	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:142)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:192)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:113)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:152)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:116)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
-	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
-	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:99)
-	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:112)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$3(RestTemplateTransportClientFactory.java:170)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:88)
-	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:72)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:889)
-	... 22 more
-
-2026-01-06T22:53:52.733+01:00  WARN 1698 --- [AGENT-IA-SERVICE] [reshExecutor-%d] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: I/O error on GET request for "http://localhost:8761/eureka/apps/delta": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
-2026-01-06T22:53:52.733+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [beatExecutor-%d] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/} exception=I/O error on PUT request for "http://localhost:8761/eureka/apps/AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on PUT request for "http://localhost:8761/eureka/apps/AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
-	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:915)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:895)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:672)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.sendHeartBeat(RestTemplateEurekaHttpClient.java:99)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:91)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
-	at com.netflix.discovery.DiscoveryClient.renew(DiscoveryClient.java:845)
-	at com.netflix.discovery.DiscoveryClient$HeartbeatThread.run(DiscoveryClient.java:1402)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:547)
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
-	at java.base/java.net.Socket.connect(Socket.java:633)
-	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.lambda$connectSocket$0(PlainConnectionSocketFactory.java:91)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
-	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:90)
-	at org.apache.hc.client5.http.socket.ConnectionSocketFactory.connectSocket(ConnectionSocketFactory.java:123)
-	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:189)
-	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:450)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:162)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:172)
-	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:142)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:192)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:113)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:152)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:116)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
-	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
-	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:99)
-	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:112)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$3(RestTemplateTransportClientFactory.java:170)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:88)
-	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:72)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:889)
-	... 19 more
-
-2026-01-06T22:53:52.733+01:00  WARN 1698 --- [AGENT-IA-SERVICE] [beatExecutor-%d] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: I/O error on PUT request for "http://localhost:8761/eureka/apps/AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
-2026-01-06T22:53:52.748+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [reshExecutor-%d] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=I/O error on GET request for "http://localhost:8761/eureka/apps/delta": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on GET request for "http://localhost:8761/eureka/apps/delta": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
-	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:915)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:895)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:672)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.getApplicationsInternal(RestTemplateEurekaHttpClient.java:145)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.getDelta(RestTemplateEurekaHttpClient.java:155)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$7.execute(EurekaHttpClientDecorator.java:152)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getDelta(EurekaHttpClientDecorator.java:149)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$7.execute(EurekaHttpClientDecorator.java:152)
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getDelta(EurekaHttpClientDecorator.java:149)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$7.execute(EurekaHttpClientDecorator.java:152)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getDelta(EurekaHttpClientDecorator.java:149)
-	at com.netflix.discovery.DiscoveryClient.getAndUpdateDelta(DiscoveryClient.java:1080)
-	at com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:963)
-	at com.netflix.discovery.DiscoveryClient.refreshRegistry(DiscoveryClient.java:1473)
-	at com.netflix.discovery.DiscoveryClient$CacheRefreshThread.run(DiscoveryClient.java:1441)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:554)
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
-	at java.base/java.net.Socket.connect(Socket.java:633)
-	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.lambda$connectSocket$0(PlainConnectionSocketFactory.java:91)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
-	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:90)
-	at org.apache.hc.client5.http.socket.ConnectionSocketFactory.connectSocket(ConnectionSocketFactory.java:123)
-	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:189)
-	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:450)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:162)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:172)
-	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:142)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:192)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:113)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:152)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:116)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
-	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
-	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:99)
-	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:112)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$3(RestTemplateTransportClientFactory.java:170)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:88)
-	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:72)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:889)
-	... 23 more
-
-2026-01-06T22:53:52.748+01:00  WARN 1698 --- [AGENT-IA-SERVICE] [reshExecutor-%d] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: I/O error on GET request for "http://localhost:8761/eureka/apps/delta": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
-2026-01-06T22:53:52.748+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [reshExecutor-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081 - was unable to refresh its cache! This periodic background refresh will be retried in 30 seconds. status = Cannot execute request on any known server stacktrace = com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getDelta(EurekaHttpClientDecorator.java:149)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$7.execute(EurekaHttpClientDecorator.java:152)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.getDelta(EurekaHttpClientDecorator.java:149)
-	at com.netflix.discovery.DiscoveryClient.getAndUpdateDelta(DiscoveryClient.java:1080)
-	at com.netflix.discovery.DiscoveryClient.fetchRegistry(DiscoveryClient.java:963)
-	at com.netflix.discovery.DiscoveryClient.refreshRegistry(DiscoveryClient.java:1473)
-	at com.netflix.discovery.DiscoveryClient$CacheRefreshThread.run(DiscoveryClient.java:1441)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-
-2026-01-06T22:53:52.749+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [beatExecutor-%d] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=I/O error on PUT request for "http://localhost:8761/eureka/apps/AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on PUT request for "http://localhost:8761/eureka/apps/AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
-	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:915)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:895)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:672)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.sendHeartBeat(RestTemplateEurekaHttpClient.java:99)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89)
-	at com.netflix.discovery.DiscoveryClient.renew(DiscoveryClient.java:845)
-	at com.netflix.discovery.DiscoveryClient$HeartbeatThread.run(DiscoveryClient.java:1402)
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539)
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264)
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:554)
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
-	at java.base/java.net.Socket.connect(Socket.java:633)
-	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.lambda$connectSocket$0(PlainConnectionSocketFactory.java:91)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
-	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:90)
-	at org.apache.hc.client5.http.socket.ConnectionSocketFactory.connectSocket(ConnectionSocketFactory.java:123)
-	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:189)
-	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:450)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:162)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:172)
-	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:142)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:192)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:113)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:152)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:116)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
-	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
-	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:99)
-	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:112)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$3(RestTemplateTransportClientFactory.java:170)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:88)
-	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:72)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:889)
-	... 20 more
-
-2026-01-06T22:53:52.749+01:00  WARN 1698 --- [AGENT-IA-SERVICE] [beatExecutor-%d] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: I/O error on PUT request for "http://localhost:8761/eureka/apps/AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
-2026-01-06T22:53:52.750+01:00 ERROR 1698 --- [AGENT-IA-SERVICE] [beatExecutor-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081 - was unable to send heartbeat!
-
-com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112) ~[eureka-client-2.0.3.jar!/:2.0.3]
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89) ~[eureka-client-2.0.3.jar!/:2.0.3]
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$3.execute(EurekaHttpClientDecorator.java:92) ~[eureka-client-2.0.3.jar!/:2.0.3]
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76) ~[eureka-client-2.0.3.jar!/:2.0.3]
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.sendHeartBeat(EurekaHttpClientDecorator.java:89) ~[eureka-client-2.0.3.jar!/:2.0.3]
-	at com.netflix.discovery.DiscoveryClient.renew(DiscoveryClient.java:845) ~[eureka-client-2.0.3.jar!/:2.0.3]
-	at com.netflix.discovery.DiscoveryClient$HeartbeatThread.run(DiscoveryClient.java:1402) ~[eureka-client-2.0.3.jar!/:2.0.3]
-	at java.base/java.util.concurrent.Executors$RunnableAdapter.call(Executors.java:539) ~[na:na]
-	at java.base/java.util.concurrent.FutureTask.run(FutureTask.java:264) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
-	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
-
-2026-01-06T22:53:53.857+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ionShutdownHook] .m.c.t.HttpClientStreamableHttpTransport : Graceful close triggered
-2026-01-06T22:53:53.863+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ionShutdownHook] .m.c.t.HttpClientStreamableHttpTransport : Graceful close triggered
-2026-01-06T22:53:53.863+01:00 DEBUG 1698 --- [AGENT-IA-SERVICE] [ionShutdownHook] .m.c.t.HttpClientStreamableHttpTransport : Graceful close triggered
-2026-01-06T22:53:53.865+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
-2026-01-06T22:53:53.868+01:00 ERROR 1698 --- [AGENT-IA-SERVICE] [onPool-worker-4] reactor.core.publisher.Operators         : Operator called default onErrorDropped
-
-reactor.core.Exceptions$ErrorCallbackNotImplemented: java.net.ConnectException
-Caused by: java.net.ConnectException: null
-	at java.net.http/jdk.internal.net.http.common.Utils.toConnectException(Utils.java:1107) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:198) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.PlainHttpConnection.checkRetryConnect(PlainHttpConnection.java:230) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$1(PlainHttpConnection.java:206) ~[java.net.http:na]
-	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934) ~[na:na]
-	at java.base/java.util.concurrent.CompletableFuture$UniHandle.tryFire(CompletableFuture.java:911) ~[na:na]
-	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510) ~[na:na]
-	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
-	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
-Caused by: java.nio.channels.ClosedChannelException: null
-	at java.base/sun.nio.ch.SocketChannelImpl.ensureOpen(SocketChannelImpl.java:195) ~[na:na]
-	at java.base/sun.nio.ch.SocketChannelImpl.beginConnect(SocketChannelImpl.java:760) ~[na:na]
-	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:848) ~[na:na]
-	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$0(PlainHttpConnection.java:183) ~[java.net.http:na]
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569) ~[na:na]
-	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:185) ~[java.net.http:na]
-	... 9 common frames omitted
-
-2026-01-06T22:53:53.868+01:00 ERROR 1698 --- [AGENT-IA-SERVICE] [onPool-worker-3] reactor.core.publisher.Operators         : Operator called default onErrorDropped
-
-reactor.core.Exceptions$ErrorCallbackNotImplemented: java.net.ConnectException
-Caused by: java.net.ConnectException: null
-	at java.net.http/jdk.internal.net.http.common.Utils.toConnectException(Utils.java:1107) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:198) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.PlainHttpConnection.checkRetryConnect(PlainHttpConnection.java:230) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$1(PlainHttpConnection.java:206) ~[java.net.http:na]
-	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934) ~[na:na]
-	at java.base/java.util.concurrent.CompletableFuture$UniHandle.tryFire(CompletableFuture.java:911) ~[na:na]
-	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510) ~[na:na]
-	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
-	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
-Caused by: java.nio.channels.ClosedChannelException: null
-	at java.base/sun.nio.ch.SocketChannelImpl.ensureOpen(SocketChannelImpl.java:195) ~[na:na]
-	at java.base/sun.nio.ch.SocketChannelImpl.beginConnect(SocketChannelImpl.java:760) ~[na:na]
-	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:848) ~[na:na]
-	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$0(PlainHttpConnection.java:183) ~[java.net.http:na]
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569) ~[na:na]
-	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:185) ~[java.net.http:na]
-	... 9 common frames omitted
-
-2026-01-06T22:53:53.868+01:00 ERROR 1698 --- [AGENT-IA-SERVICE] [onPool-worker-5] reactor.core.publisher.Operators         : Operator called default onErrorDropped
-
-reactor.core.Exceptions$ErrorCallbackNotImplemented: java.net.ConnectException
-Caused by: java.net.ConnectException: null
-	at java.net.http/jdk.internal.net.http.common.Utils.toConnectException(Utils.java:1107) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:198) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.PlainHttpConnection.checkRetryConnect(PlainHttpConnection.java:230) ~[java.net.http:na]
-	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$1(PlainHttpConnection.java:206) ~[java.net.http:na]
-	at java.base/java.util.concurrent.CompletableFuture.uniHandle(CompletableFuture.java:934) ~[na:na]
-	at java.base/java.util.concurrent.CompletableFuture$UniHandle.tryFire(CompletableFuture.java:911) ~[na:na]
-	at java.base/java.util.concurrent.CompletableFuture.postComplete(CompletableFuture.java:510) ~[na:na]
-	at java.base/java.util.concurrent.CompletableFuture$AsyncSupply.run(CompletableFuture.java:1773) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136) ~[na:na]
-	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635) ~[na:na]
-	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
-Caused by: java.nio.channels.ClosedChannelException: null
-	at java.base/sun.nio.ch.SocketChannelImpl.ensureOpen(SocketChannelImpl.java:195) ~[na:na]
-	at java.base/sun.nio.ch.SocketChannelImpl.beginConnect(SocketChannelImpl.java:760) ~[na:na]
-	at java.base/sun.nio.ch.SocketChannelImpl.connect(SocketChannelImpl.java:848) ~[na:na]
-	at java.net.http/jdk.internal.net.http.PlainHttpConnection.lambda$connectAsync$0(PlainHttpConnection.java:183) ~[java.net.http:na]
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569) ~[na:na]
-	at java.net.http/jdk.internal.net.http.PlainHttpConnection.connectAsync(PlainHttpConnection.java:185) ~[java.net.http:na]
-	... 9 common frames omitted
-
-2026-01-06T22:53:56.923+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
-2026-01-06T22:53:57.050+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [ionShutdownHook] c.n.d.s.t.d.RedirectingEurekaHttpClient  : Request execution error. endpoint=DefaultEndpoint{ serviceUrl='http://localhost:8761/eureka/}, exception=I/O error on DELETE request for "http://localhost:8761/eureka/apps/AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused stacktrace=org.springframework.web.client.ResourceAccessException: I/O error on DELETE request for "http://localhost:8761/eureka/apps/AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
-	at org.springframework.web.client.RestTemplate.createResourceAccessException(RestTemplate.java:915)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:895)
-	at org.springframework.web.client.RestTemplate.execute(RestTemplate.java:790)
-	at org.springframework.web.client.RestTemplate.exchange(RestTemplate.java:672)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateEurekaHttpClient.cancel(RestTemplateEurekaHttpClient.java:87)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.executeOnNewServer(RedirectingEurekaHttpClient.java:121)
-	at com.netflix.discovery.shared.transport.decorator.RedirectingEurekaHttpClient.execute(RedirectingEurekaHttpClient.java:80)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:120)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74)
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76)
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71)
-	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:919)
-	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:900)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:415)
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:239)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:202)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:195)
-	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:389)
-	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:136)
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:211)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1202)
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520)
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1195)
-	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1195)
-	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1156)
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174)
-	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1102)
-	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:145)
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75)
-	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:114)
-	at java.base/java.lang.Thread.run(Thread.java:840)
-Caused by: org.apache.hc.client5.http.HttpHostConnectException: Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
-	at java.base/sun.nio.ch.Net.pollConnect(Native Method)
-	at java.base/sun.nio.ch.Net.pollConnectNow(Net.java:672)
-	at java.base/sun.nio.ch.NioSocketImpl.timedFinishConnect(NioSocketImpl.java:554)
-	at java.base/sun.nio.ch.NioSocketImpl.connect(NioSocketImpl.java:602)
-	at java.base/java.net.SocksSocketImpl.connect(SocksSocketImpl.java:327)
-	at java.base/java.net.Socket.connect(Socket.java:633)
-	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.lambda$connectSocket$0(PlainConnectionSocketFactory.java:91)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:569)
-	at org.apache.hc.client5.http.socket.PlainConnectionSocketFactory.connectSocket(PlainConnectionSocketFactory.java:90)
-	at org.apache.hc.client5.http.socket.ConnectionSocketFactory.connectSocket(ConnectionSocketFactory.java:123)
-	at org.apache.hc.client5.http.impl.io.DefaultHttpClientConnectionOperator.connect(DefaultHttpClientConnectionOperator.java:189)
-	at org.apache.hc.client5.http.impl.io.PoolingHttpClientConnectionManager.connect(PoolingHttpClientConnectionManager.java:450)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:162)
-	at org.apache.hc.client5.http.impl.classic.InternalExecRuntime.connectEndpoint(InternalExecRuntime.java:172)
-	at org.apache.hc.client5.http.impl.classic.ConnectExec.execute(ConnectExec.java:142)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ProtocolExec.execute(ProtocolExec.java:192)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.HttpRequestRetryExec.execute(HttpRequestRetryExec.java:113)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.ContentCompressionExec.execute(ContentCompressionExec.java:152)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.RedirectExec.execute(RedirectExec.java:116)
-	at org.apache.hc.client5.http.impl.classic.ExecChainElement.execute(ExecChainElement.java:51)
-	at org.apache.hc.client5.http.impl.classic.InternalHttpClient.doExecute(InternalHttpClient.java:170)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:87)
-	at org.apache.hc.client5.http.impl.classic.CloseableHttpClient.execute(CloseableHttpClient.java:55)
-	at org.apache.hc.client5.http.classic.HttpClient.executeOpen(HttpClient.java:183)
-	at org.springframework.http.client.HttpComponentsClientHttpRequest.executeInternal(HttpComponentsClientHttpRequest.java:99)
-	at org.springframework.http.client.AbstractStreamingClientHttpRequest.executeInternal(AbstractStreamingClientHttpRequest.java:70)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:112)
-	at org.springframework.cloud.netflix.eureka.http.RestTemplateTransportClientFactory.lambda$restTemplate$3(RestTemplateTransportClientFactory.java:170)
-	at org.springframework.http.client.InterceptingClientHttpRequest$InterceptingRequestExecution.execute(InterceptingClientHttpRequest.java:88)
-	at org.springframework.http.client.InterceptingClientHttpRequest.executeInternal(InterceptingClientHttpRequest.java:72)
-	at org.springframework.http.client.AbstractBufferingClientHttpRequest.executeInternal(AbstractBufferingClientHttpRequest.java:48)
-	at org.springframework.http.client.AbstractClientHttpRequest.execute(AbstractClientHttpRequest.java:66)
-	at org.springframework.web.client.RestTemplate.doExecute(RestTemplate.java:889)
-	... 40 more
-
-2026-01-06T22:53:57.050+01:00  WARN 1698 --- [AGENT-IA-SERVICE] [ionShutdownHook] c.n.d.s.t.d.RetryableEurekaHttpClient    : Request execution failed with message: I/O error on DELETE request for "http://localhost:8761/eureka/apps/AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081": Connect to http://localhost:8761 [localhost/127.0.0.1, localhost/0:0:0:0:0:0:0:1] failed: Connection refused
-2026-01-06T22:53:57.050+01:00 ERROR 1698 --- [AGENT-IA-SERVICE] [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081 - de-registration failedCannot execute request on any known server
-
-com.netflix.discovery.shared.transport.TransportException: Cannot execute request on any known server
-	at com.netflix.discovery.shared.transport.decorator.RetryableEurekaHttpClient.execute(RetryableEurekaHttpClient.java:112) ~[eureka-client-2.0.3.jar!/:2.0.3]
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-2.0.3.jar!/:2.0.3]
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator$2.execute(EurekaHttpClientDecorator.java:74) ~[eureka-client-2.0.3.jar!/:2.0.3]
-	at com.netflix.discovery.shared.transport.decorator.SessionedEurekaHttpClient.execute(SessionedEurekaHttpClient.java:76) ~[eureka-client-2.0.3.jar!/:2.0.3]
-	at com.netflix.discovery.shared.transport.decorator.EurekaHttpClientDecorator.cancel(EurekaHttpClientDecorator.java:71) ~[eureka-client-2.0.3.jar!/:2.0.3]
-	at com.netflix.discovery.DiscoveryClient.unregister(DiscoveryClient.java:919) ~[eureka-client-2.0.3.jar!/:2.0.3]
-	at com.netflix.discovery.DiscoveryClient.shutdown(DiscoveryClient.java:900) ~[eureka-client-2.0.3.jar!/:2.0.3]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method) ~[na:na]
-	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77) ~[na:na]
-	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43) ~[na:na]
-	at java.base/java.lang.reflect.Method.invoke(Method.java:569) ~[na:na]
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMethod.invoke(InitDestroyAnnotationBeanPostProcessor.java:457) ~[spring-beans-6.1.14.jar!/:6.1.14]
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor$LifecycleMetadata.invokeDestroyMethods(InitDestroyAnnotationBeanPostProcessor.java:415) ~[spring-beans-6.1.14.jar!/:6.1.14]
-	at org.springframework.beans.factory.annotation.InitDestroyAnnotationBeanPostProcessor.postProcessBeforeDestruction(InitDestroyAnnotationBeanPostProcessor.java:239) ~[spring-beans-6.1.14.jar!/:6.1.14]
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:202) ~[spring-beans-6.1.14.jar!/:6.1.14]
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.run(DisposableBeanAdapter.java:195) ~[spring-beans-6.1.14.jar!/:6.1.14]
-	at org.springframework.cloud.context.scope.GenericScope$BeanLifecycleWrapper.destroy(GenericScope.java:389) ~[spring-cloud-context-4.1.4.jar!/:4.1.4]
-	at org.springframework.cloud.context.scope.GenericScope.destroy(GenericScope.java:136) ~[spring-cloud-context-4.1.4.jar!/:4.1.4]
-	at org.springframework.beans.factory.support.DisposableBeanAdapter.destroy(DisposableBeanAdapter.java:211) ~[spring-beans-6.1.14.jar!/:6.1.14]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroyBean(DefaultSingletonBeanRegistry.java:587) ~[spring-beans-6.1.14.jar!/:6.1.14]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingleton(DefaultSingletonBeanRegistry.java:559) ~[spring-beans-6.1.14.jar!/:6.1.14]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingleton(DefaultListableBeanFactory.java:1202) ~[spring-beans-6.1.14.jar!/:6.1.14]
-	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(DefaultSingletonBeanRegistry.java:520) ~[spring-beans-6.1.14.jar!/:6.1.14]
-	at org.springframework.beans.factory.support.DefaultListableBeanFactory.destroySingletons(DefaultListableBeanFactory.java:1195) ~[spring-beans-6.1.14.jar!/:6.1.14]
-	at org.springframework.context.support.AbstractApplicationContext.destroyBeans(AbstractApplicationContext.java:1195) ~[spring-context-6.1.14.jar!/:6.1.14]
-	at org.springframework.context.support.AbstractApplicationContext.doClose(AbstractApplicationContext.java:1156) ~[spring-context-6.1.14.jar!/:6.1.14]
-	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.doClose(ServletWebServerApplicationContext.java:174) ~[spring-boot-3.3.5.jar!/:3.3.5]
-	at org.springframework.context.support.AbstractApplicationContext.close(AbstractApplicationContext.java:1102) ~[spring-context-6.1.14.jar!/:6.1.14]
-	at org.springframework.boot.SpringApplicationShutdownHook.closeAndWait(SpringApplicationShutdownHook.java:145) ~[spring-boot-3.3.5.jar!/:3.3.5]
-	at java.base/java.lang.Iterable.forEach(Iterable.java:75) ~[na:na]
-	at org.springframework.boot.SpringApplicationShutdownHook.run(SpringApplicationShutdownHook.java:114) ~[spring-boot-3.3.5.jar!/:3.3.5]
-	at java.base/java.lang.Thread.run(Thread.java:840) ~[na:na]
-
-2026-01-06T22:53:57.051+01:00  INFO 1698 --- [AGENT-IA-SERVICE] [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient
+2026-01-06T23:49:46.384+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [rap-executor-%d] c.n.d.s.r.aws.ConfigClusterResolver      : Resolving eureka endpoints via configuration
+2026-01-06T23:50:30.678+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-6] o.s.a.m.tool.DefaultToolCallingManager   : Executing tool call: getProducts
+2026-01-06T23:50:30.681+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-6] i.m.client.LifecycleInitializer          : Joining previous initialization
+2026-01-06T23:50:30.682+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-6] i.m.spec.McpClientSession                : Sending message for method tools/call
+2026-01-06T23:50:30.682+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-6] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCRequest[jsonrpc=2.0, method=tools/call, id=a272eed8-3, params=CallToolRequest[name=getProducts, arguments={}, meta={}]]
+2026-01-06T23:50:30.757+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-4] .m.c.t.HttpClientStreamableHttpTransport : Received SSE stream response, using line subscriber
+2026-01-06T23:50:30.758+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-4] io.modelcontextprotocol.spec.McpSchema   : Received JSON message: {"jsonrpc":"2.0","id":"a272eed8-3","result":{"content":[{"type":"text","text":"[{\"id\":1,\"nom\":\"Ordinateur Portable\",\"prix\":899.99},{\"id\":2,\"nom\":\"Souris Sans Fil\",\"prix\":29.99},{\"id\":3,\"nom\":\"Clavier Mécanique\",\"prix\":149.99},{\"id\":4,\"nom\":\"Écran 27 pouces\",\"prix\":299.99},{\"id\":5,\"nom\":\"Casque Audio\",\"prix\":79.99},{\"id\":6,\"nom\":\"Webcam HD\",\"prix\":59.99},{\"id\":7,\"nom\":\"USB 64GB\",\"prix\":19.99},{\"id\":8,\"nom\":\"Disque Dur 1TB\",\"prix\":89.99},{\"id\":9,\"nom\":\"Imprimante Laser\",\"prix\":199.99},{\"id\":10,\"nom\":\"PC Portable Dell XPS\",\"prix\":5000.0},{\"id\":11,\"nom\":\"PC Portable Dell\",\"prix\":5000.0},{\"id\":12,\"nom\":\"Clavier RGB\",\"prix\":150.0},{\"id\":13,\"nom\":\"TestPC\",\"prix\":50.0},{\"id\":14,\"nom\":\"iphone \",\"prix\":2344.0},{\"id\":16,\"nom\":\"arij\",\"prix\":1.0}]"}],"isError":false}}
+2026-01-06T23:50:30.758+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-4] .m.c.t.HttpClientStreamableHttpTransport : Connected stream 5
+2026-01-06T23:50:30.758+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-4] i.m.spec.DefaultMcpTransportStream       : Updating last id null -> 9a2840a9-baad-4228-ab1d-0ee61eceaa38 for stream 5
+2026-01-06T23:50:30.758+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-4] i.m.spec.McpClientSession                : Received response: JSONRPCResponse[jsonrpc=2.0, id=a272eed8-3, result={content=[{type=text, text=[{"id":1,"nom":"Ordinateur Portable","prix":899.99},{"id":2,"nom":"Souris Sans Fil","prix":29.99},{"id":3,"nom":"Clavier Mécanique","prix":149.99},{"id":4,"nom":"Écran 27 pouces","prix":299.99},{"id":5,"nom":"Casque Audio","prix":79.99},{"id":6,"nom":"Webcam HD","prix":59.99},{"id":7,"nom":"USB 64GB","prix":19.99},{"id":8,"nom":"Disque Dur 1TB","prix":89.99},{"id":9,"nom":"Imprimante Laser","prix":199.99},{"id":10,"nom":"PC Portable Dell XPS","prix":5000.0},{"id":11,"nom":"PC Portable Dell","prix":5000.0},{"id":12,"nom":"Clavier RGB","prix":150.0},{"id":13,"nom":"TestPC","prix":50.0},{"id":14,"nom":"iphone ","prix":2344.0},{"id":16,"nom":"arij","prix":1.0}]}], isError=false}, error=null]
+2026-01-06T23:50:30.759+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-4] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
+2026-01-06T23:50:30.761+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [onPool-worker-3] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
+2026-01-06T23:51:05.692+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-8] o.s.a.m.tool.DefaultToolCallingManager   : Executing tool call: getProduct
+2026-01-06T23:51:05.694+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-8] i.m.client.LifecycleInitializer          : Joining previous initialization
+2026-01-06T23:51:05.695+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-8] i.m.spec.McpClientSession                : Sending message for method tools/call
+2026-01-06T23:51:05.695+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [nio-8081-exec-8] .m.c.t.HttpClientStreamableHttpTransport : Sending message JSONRPCRequest[jsonrpc=2.0, method=tools/call, id=a272eed8-4, params=CallToolRequest[name=getProduct, arguments={id=14}, meta={}]]
+2026-01-06T23:51:05.785+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-4] .m.c.t.HttpClientStreamableHttpTransport : Received SSE stream response, using line subscriber
+2026-01-06T23:51:05.786+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-4] io.modelcontextprotocol.spec.McpSchema   : Received JSON message: {"jsonrpc":"2.0","id":"a272eed8-4","result":{"content":[{"type":"text","text":"{\"id\":14,\"nom\":\"iphone \",\"prix\":2344.0}"}],"isError":false}}
+2026-01-06T23:51:05.786+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-4] .m.c.t.HttpClientStreamableHttpTransport : Connected stream 6
+2026-01-06T23:51:05.786+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-4] i.m.spec.DefaultMcpTransportStream       : Updating last id null -> 9a2840a9-baad-4228-ab1d-0ee61eceaa38 for stream 6
+2026-01-06T23:51:05.786+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-4] i.m.spec.McpClientSession                : Received response: JSONRPCResponse[jsonrpc=2.0, id=a272eed8-4, result={content=[{type=text, text={"id":14,"nom":"iphone ","prix":2344.0}}], isError=false}, error=null]
+2026-01-06T23:51:05.787+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ient-1-Worker-4] .m.c.t.HttpClientStreamableHttpTransport : SendMessage finally: onComplete
+2026-01-06T23:51:05.787+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [onPool-worker-3] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
+2026-01-06T23:52:45.272+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [ionShutdownHook] o.s.c.n.e.s.EurekaServiceRegistry        : Unregistering application AGENT-IA-SERVICE with eureka with status DOWN
+2026-01-06T23:52:45.275+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Saw local status change event StatusChangeEvent [timestamp=1767739965275, current=DOWN, previous=UP]
+2026-01-06T23:52:45.276+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081: registering service...
+2026-01-06T23:52:45.304+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [foReplicator-%d] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081 - registration status: 204
+2026-01-06T23:52:47.390+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ionShutdownHook] .m.c.t.HttpClientStreamableHttpTransport : Graceful close triggered
+2026-01-06T23:52:47.400+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ionShutdownHook] .m.c.t.HttpClientStreamableHttpTransport : Graceful close triggered
+2026-01-06T23:52:47.400+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [ionShutdownHook] .m.c.t.HttpClientStreamableHttpTransport : Graceful close triggered
+2026-01-06T23:52:47.411+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Shutting down DiscoveryClient ...
+2026-01-06T23:52:47.446+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [onPool-worker-4] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
+2026-01-06T23:52:47.470+01:00 DEBUG 23156 --- [AGENT-IA-SERVICE] [onPool-worker-4] .m.c.t.HttpClientStreamableHttpTransport : SSE connection established successfully
+2026-01-06T23:52:50.416+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Unregistering ...
+2026-01-06T23:52:50.426+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : DiscoveryClient_AGENT-IA-SERVICE/192.168.100.46:AGENT-IA-SERVICE:8081 - deregister  status: 200
+2026-01-06T23:52:50.426+01:00  INFO 23156 --- [AGENT-IA-SERVICE] [ionShutdownHook] com.netflix.discovery.DiscoveryClient    : Completed shut down of DiscoveryClient

@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 
 import org.springaicommunity.mcp.annotation.McpTool;
 import org.springaicommunity.mcp.annotation.McpToolParam;
@@ -27,10 +29,29 @@ public class CommandeController {
     private ClientRestClient clientRestClient;
     private ProduitRestClient produitRestClient;
 
-    @McpTool(name = "getOrders", description = "Récupère la liste de toutes les commandes")
     @GetMapping("/commandes")
     public List<Commande> all() {
         return commandeRepository.findAll();
+    }
+    
+    @McpTool(name = "getOrders", description = "Récupère la liste des 20 dernières commandes avec résumé: id, date, idClient, total, nbProduits")
+    @GetMapping("/commandes/recent")
+    public List<Map<String, Object>> recentOrders() {
+        List<Commande> all = commandeRepository.findAll();
+        int size = all.size();
+        List<Commande> recent = all.subList(Math.max(0, size - 20), size);
+        
+        return recent.stream().map(c -> {
+            Map<String, Object> summary = new HashMap<>();
+            summary.put("id", c.getId());
+            summary.put("date", c.getDate());
+            summary.put("idClient", c.getIdClient());
+            summary.put("nbProduits", c.getProductItems() != null ? c.getProductItems().size() : 0);
+            double total = c.getProductItems() != null ? 
+                c.getProductItems().stream().mapToDouble(pi -> pi.getPrix() * pi.getQuantite()).sum() : 0;
+            summary.put("total", total);
+            return summary;
+        }).toList();
     }
 
     @McpTool(name = "getOrderDetails", description = "Récupère les détails d'une commande (client + produits) via son ID")
