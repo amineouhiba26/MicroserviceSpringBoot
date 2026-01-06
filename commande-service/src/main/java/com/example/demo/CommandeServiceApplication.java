@@ -33,6 +33,7 @@ public class CommandeServiceApplication {
 			ClientRestClient clientRestClient
 	) {
 		return args -> {
+			/*
 			List<Client> clients = clientRestClient.getClients();
 			List<Produit> produits = productRestClient.getProduits();
 
@@ -56,7 +57,7 @@ public class CommandeServiceApplication {
 					productItemRepository.save(productItem);
 				});
 			});
-
+			*/
 		};
 	}
 }

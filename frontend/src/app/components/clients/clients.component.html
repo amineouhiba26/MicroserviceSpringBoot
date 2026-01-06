@@ -1,0 +1,125 @@
+<div class="page-layout">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>Agent IA</h2>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a routerLink="/chat" class="nav-item">
+        <span class="label">Chat</span>
+      </a>
+      <a routerLink="/products" class="nav-item">
+        <span class="label">Products</span>
+      </a>
+      <a routerLink="/clients" class="nav-item active">
+        <span class="label">Clients</span>
+      </a>
+    </nav>
+
+    <div class="sidebar-footer">
+      <button class="btn-logout" (click)="logout()">
+        Sign Out
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <header class="page-header">
+      <h1>Clients</h1>
+      <button class="btn-primary" (click)="openCreateModal()">
+        New Client
+      </button>
+    </header>
+
+    @if (error) {
+      <div class="error-alert">{{ error }}</div>
+    }
+
+    @if (loading) {
+      <div class="loading">
+        <div class="spinner"></div>
+        <p>Loading clients...</p>
+      </div>
+    } @else {
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Last Name</th>
+              <th>First Name</th>
+              <th>Email</th>
+              <th>Phone</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (client of clients; track client.id) {
+              <tr>
+                <td>{{ client.id }}</td>
+                <td>{{ client.nom }}</td>
+                <td>{{ client.prenom }}</td>
+                <td>{{ client.email }}</td>
+                <td>{{ client.telephone || '-' }}</td>
+                <td class="actions">
+                  <button class="btn-edit" (click)="openEditModal(client)">Edit</button>
+                  <button class="btn-delete" (click)="deleteClient(client.id!)">Delete</button>
+                </td>
+              </tr>
+            } @empty {
+              <tr>
+                <td colspan="6" class="empty-message">No clients found</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    }
+  </main>
+</div>
+
+<!-- Modal -->
+@if (showModal) {
+  <div class="modal-overlay" (click)="closeModal()">
+    <div class="modal" (click)="$event.stopPropagation()">
+      <div class="modal-header">
+        <h2>{{ editMode ? 'Edit Client' : 'New Client' }}</h2>
+        <button class="btn-close" (click)="closeModal()">×</button>
+      </div>
+      <div class="modal-body">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" [(ngModel)]="currentClient.nom" placeholder="Last name" />
+          </div>
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" [(ngModel)]="currentClient.prenom" placeholder="First name" />
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" [(ngModel)]="currentClient.email" placeholder="Email" />
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" [(ngModel)]="currentClient.telephone" placeholder="Phone" />
+          </div>
+          <div class="form-group">
+            <label>Address</label>
+            <input type="text" [(ngModel)]="currentClient.adresse" placeholder="Address" />
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn-secondary" (click)="closeModal()">Cancel</button>
+        <button class="btn-primary" (click)="saveClient()">
+          {{ editMode ? 'Update' : 'Create' }}
+        </button>
+      </div>
+    </div>
+  </div>
+}

@@ -1,0 +1,112 @@
+<div class="chat-layout" [class.sidebar-closed]="!sidebarOpen">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h2>Agent IA</h2>
+      <button class="btn-toggle" (click)="toggleSidebar()">
+        <span class="menu-icon"></span>
+      </button>
+    </div>
+
+    <nav class="sidebar-nav">
+      <a routerLink="/chat" class="nav-item active">
+        <span class="label">Chat</span>
+      </a>
+      <a routerLink="/products" class="nav-item">
+        <span class="label">Products</span>
+      </a>
+      <a routerLink="/clients" class="nav-item">
+        <span class="label">Clients</span>
+      </a>
+    </nav>
+
+    <div class="quick-actions">
+      <h3>Quick Actions</h3>
+      @for (action of quickActions; track action.label) {
+        <button class="quick-action-btn" (click)="sendQuickAction(action.message)">
+          <span class="label">{{ action.label }}</span>
+        </button>
+      }
+    </div>
+
+    <div class="sidebar-footer">
+      <button class="btn-clear" (click)="clearChat()">
+        Clear Chat
+      </button>
+      <button class="btn-logout" (click)="logout()">
+        Sign Out
+      </button>
+    </div>
+  </aside>
+
+  <!-- Main Chat Area -->
+  <main class="chat-main">
+    <header class="chat-header">
+      <button class="btn-menu" (click)="toggleSidebar()">
+        <span class="menu-icon"></span>
+      </button>
+      <h1>Assistant</h1>
+      <span class="status online">Online</span>
+    </header>
+
+    <div class="messages-container" #messagesContainer>
+      @if (messages.length === 0) {
+        <div class="welcome-message">
+          <h2>Welcome</h2>
+          <p>I am your AI assistant. I can help you manage your products and clients.</p>
+          <p>Try one of the quick actions or ask me a question.</p>
+        </div>
+      }
+
+      @for (message of messages; track message.timestamp) {
+        <div class="message" [class.user]="message.role === 'user'" [class.assistant]="message.role === 'assistant'">
+          <div class="message-avatar">
+            @if (message.role === 'user') {
+              <span class="avatar-letter">U</span>
+            } @else {
+              <span class="avatar-letter">A</span>
+            }
+          </div>
+          <div class="message-content">
+            <div class="message-text">{{ message.content }}</div>
+            <div class="message-time">{{ message.timestamp | date:'HH:mm' }}</div>
+          </div>
+        </div>
+      }
+
+      @if (loading) {
+        <div class="message assistant">
+          <div class="message-avatar">
+            <span class="avatar-letter">A</span>
+          </div>
+          <div class="message-content">
+            <div class="typing-indicator">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+        </div>
+      }
+    </div>
+
+    <div class="chat-input-area">
+      <div class="input-wrapper">
+        <input 
+          type="text" 
+          [(ngModel)]="newMessage" 
+          (keyup.enter)="sendMessage()"
+          placeholder="Type your message..."
+          [disabled]="loading"
+        />
+        <button class="btn-send" (click)="sendMessage()" [disabled]="loading || !newMessage.trim()">
+          @if (loading) {
+            <span class="spinner"></span>
+          } @else {
+            <span class="send-icon"></span>
+          }
+        </button>
+      </div>
+    </div>
+  </main>
+</div>

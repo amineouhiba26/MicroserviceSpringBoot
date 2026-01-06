@@ -17,9 +17,8 @@ public class ClientServiceApplication {
     @Bean
     CommandLineRunner start(ClientRepository clientRepository) {
         return args -> {
-            clientRepository.save(new Client(null, "Amine", "amine@gmail.com"));
-            clientRepository.save(new Client(null, "Hassan", "hassan@gmail.com"));
-            clientRepository.save(new Client(null, "Mohamed", "mohamed@gmail.com"));
+            clientRepository.save(new Client(5L, "med", "med@med.com"));
+
         };
     }
 }

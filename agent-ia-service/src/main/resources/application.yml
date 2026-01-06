@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: AGENT-IA-SERVICE
+  ai:
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        options:
+          model: llama3.2
+    mcp:
+      client:
+        streamable-http:
+          connections:
+            client-service:
+              url: http://localhost:8082
+              endpoint: /mcp
+            product-service:
+              url: http://localhost:9091
+              endpoint: /mcp
+
+server:
+  port: 8081
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+
+logging:
+  level:
+    org.springframework.ai: DEBUG
+    io.modelcontextprotocol: DEBUG

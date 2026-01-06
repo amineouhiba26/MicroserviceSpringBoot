@@ -1,0 +1,47 @@
+❯ Building...
+✔ Building...
+Initial chunk files | Names              |  Raw size
+main.js             | main               |   4.58 kB | 
+chunk-JRGDFFIY.js   | -                  |   2.75 kB | 
+styles.css          | styles             | 383 bytes | 
+polyfills.js        | polyfills          |  95 bytes | 
+
+                    | Initial total      |   7.80 kB
+
+Lazy chunk files    | Names              |  Raw size
+chunk-Y4UQ7PTB.js   | chat-component     |  43.06 kB | 
+chunk-S7DKAGNX.js   | products-component |  38.60 kB | 
+chunk-I3JFHVK3.js   | clients-component  |  38.54 kB | 
+chunk-5LO44ZC3.js   | register-component |  17.08 kB | 
+chunk-KI3VMYMI.js   | login-component    |  14.57 kB | 
+
+Application bundle generation complete. [3.834 seconds] - 2026-01-06T21:43:47.468Z
+
+Watch mode enabled. Watching for file changes...
+NOTE: Raw file sizes do not reflect development server per-request transformations.
+  ➜  Local:   http://localhost:4200/
+fatal error: all goroutines are asleep - deadlock!
+
+goroutine 1 [chan receive]:
+github.com/evanw/esbuild/internal/helpers.(*ThreadSafeWaitGroup).Wait(...)
+	github.com/evanw/esbuild/internal/helpers/waitgroup.go:36
+main.runService.func2()
+	github.com/evanw/esbuild/cmd/esbuild/service.go:114 +0x88
+main.runService(0x1)
+	github.com/evanw/esbuild/cmd/esbuild/service.go:160 +0x47c
+main.main()
+	github.com/evanw/esbuild/cmd/esbuild/main.go:252 +0xaa0
+
+goroutine 18 [chan receive]:
+main.runService.func1()
+	github.com/evanw/esbuild/cmd/esbuild/service.go:98 +0x40
+created by main.runService in goroutine 1
+	github.com/evanw/esbuild/cmd/esbuild/service.go:97 +0x19c
+
+goroutine 19 [chan receive]:
+main.(*serviceType).sendRequest(0x140001149c0, {0x10266ab00, 0x140001ee2d0})
+	github.com/evanw/esbuild/cmd/esbuild/service.go:192 +0x138
+main.runService.func3()
+	github.com/evanw/esbuild/cmd/esbuild/service.go:125 +0x44
+created by main.runService in goroutine 1
+	github.com/evanw/esbuild/cmd/esbuild/service.go:122 +0x2e4

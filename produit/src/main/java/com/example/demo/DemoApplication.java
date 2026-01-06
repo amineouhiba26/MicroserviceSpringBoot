@@ -14,7 +14,7 @@ public class DemoApplication {
 		SpringApplication.run(DemoApplication.class, args);
 	}
 
-	@Bean
+	//@Bean
 	CommandLineRunner initProduits(ProduitRepository produitRepository) {
 		return args -> {
 			if (produitRepository.count() == 0) {

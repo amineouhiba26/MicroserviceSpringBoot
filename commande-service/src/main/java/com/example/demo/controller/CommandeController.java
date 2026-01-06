@@ -16,6 +16,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Date;
 import java.util.List;
 
+import org.springaicommunity.mcp.annotation.McpTool;
+import org.springaicommunity.mcp.annotation.McpToolParam;
+
 @RestController
 @AllArgsConstructor
 public class CommandeController {
@@ -24,13 +27,15 @@ public class CommandeController {
     private ClientRestClient clientRestClient;
     private ProduitRestClient produitRestClient;
 
+    @McpTool(name = "getOrders", description = "Récupère la liste de toutes les commandes")
     @GetMapping("/commandes")
     public List<Commande> all() {
         return commandeRepository.findAll();
     }
 
+    @McpTool(name = "getOrderDetails", description = "Récupère les détails d'une commande (client + produits) via son ID")
     @GetMapping("/commandes/{id}")
-    public Commande getCommandeDetails(@PathVariable Long id) {
+    public Commande getCommandeDetails(@McpToolParam(description = "ID de la commande") @PathVariable Long id) {
         Commande commande = commandeRepository.findById(id).orElse(null);
         if (commande == null) return null;
 
