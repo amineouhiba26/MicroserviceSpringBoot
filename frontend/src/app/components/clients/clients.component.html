@@ -28,9 +28,11 @@
   <main class="main-content">
     <header class="page-header">
       <h1>Clients</h1>
-      <button class="btn-primary" (click)="openCreateModal()">
-        New Client
-      </button>
+      @if (isAdmin) {
+        <button class="btn-primary" (click)="openCreateModal()">
+          New Client
+        </button>
+      }
     </header>
 
     @if (error) {
@@ -64,8 +66,12 @@
                 <td>{{ client.email }}</td>
                 <td>{{ client.telephone || '-' }}</td>
                 <td class="actions">
-                  <button class="btn-edit" (click)="openEditModal(client)">Edit</button>
-                  <button class="btn-delete" (click)="deleteClient(client.id!)">Delete</button>
+                  @if (isAdmin) {
+                    <button class="btn-edit" (click)="openEditModal(client)">Edit</button>
+                    <button class="btn-delete" (click)="deleteClient(client.id!)">Delete</button>
+                  } @else {
+                    <span class="view-only">View only</span>
+                  }
                 </td>
               </tr>
             } @empty {

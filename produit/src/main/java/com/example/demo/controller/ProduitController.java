@@ -43,4 +43,16 @@ public class ProduitController {
         produitRepository.deleteById(id);
         System.out.println("Produit supprimé avec l'ID : " + id);
     }
+
+    @McpTool(name = "updateProduct", description = "Met à jour un produit via son ID, avec un nouveau nom et un nouveau prix")
+    @PutMapping("/produits/{id}")
+    public Produit update(
+            @McpToolParam(description = "ID du produit") @PathVariable long id,
+            @McpToolParam(description = "Nouveau nom du produit") @RequestParam String nom,
+            @McpToolParam(description = "Nouveau prix du produit") @RequestParam double prix) {
+        Produit produit = produitRepository.findById(id).get();
+        produit.setNom(nom);
+        produit.setPrix(prix);
+        return produitRepository.save(produit);
+    }
 }

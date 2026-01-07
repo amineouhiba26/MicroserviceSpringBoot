@@ -12,12 +12,14 @@
       <a routerLink="/chat" class="nav-item active">
         <span class="label">Chat</span>
       </a>
-      <a routerLink="/products" class="nav-item">
-        <span class="label">Products</span>
-      </a>
-      <a routerLink="/clients" class="nav-item">
-        <span class="label">Clients</span>
-      </a>
+      @if (isAdmin) {
+        <a routerLink="/products" class="nav-item">
+          <span class="label">Products</span>
+        </a>
+        <a routerLink="/clients" class="nav-item">
+          <span class="label">Clients</span>
+        </a>
+      }
     </nav>
 
     <div class="quick-actions">

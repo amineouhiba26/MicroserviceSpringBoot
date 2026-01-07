@@ -12,6 +12,13 @@ export interface User {
   email?: string;
 }
 
+export interface JwtPayload {
+  sub: string;
+  roles?: string[];
+  exp?: number;
+  iat?: number;
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -56,5 +63,60 @@ export class AuthService {
 
   isAuthenticated(): boolean {
     return this.hasToken();
+  }
+
+  /**
+   * Decode JWT token payload (without verification - verification is done server-side)
+   */
+  private decodeToken(): JwtPayload | null {
+    const token = this.getToken();
+    if (!token) {
+      return null;
+    }
+
+    try {
+      const parts = token.split('.');
+      if (parts.length !== 3) {
+        return null;
+      }
+      const payload = parts[1];
+      const decoded = atob(payload.replaceAll('-', '+').replaceAll('_', '/'));
+      return JSON.parse(decoded) as JwtPayload;
+    } catch {
+      return null;
+    }
+  }
+
+  /**
+   * Get user roles from JWT token
+   */
+  getRoles(): string[] {
+    const payload = this.decodeToken();
+    return payload?.roles ?? [];
+  }
+
+  /**
+   * Check if current user has ADMIN role
+   * Mirrors backend logic: roles.contains("ADMIN")
+   */
+  isAdmin(): boolean {
+    const roles = this.getRoles();
+    return roles.includes('ADMIN');
+  }
+
+  /**
+   * Get current user ID (subject) from JWT token
+   */
+  getUserId(): string {
+    const payload = this.decodeToken();
+    return payload?.sub ?? 'anonymous';
+  }
+
+  /**
+   * Check if user has a specific role
+   */
+  hasRole(role: string): boolean {
+    const roles = this.getRoles();
+    return roles.includes(role);
   }
 }

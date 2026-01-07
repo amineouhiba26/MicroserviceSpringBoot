@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewChecked } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewChecked, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
@@ -12,19 +12,31 @@ import { AuthService } from '../../services/auth.service';
   templateUrl: './chat.component.html',
   styleUrl: './chat.component.scss'
 })
-export class ChatComponent implements AfterViewChecked {
+export class ChatComponent implements AfterViewChecked, OnInit {
   @ViewChild('messagesContainer') private messagesContainer!: ElementRef;
   
   messages: ChatMessage[] = [];
   newMessage = '';
   loading = false;
   sidebarOpen = true;
+  
+  // Role-based access control (mirrors backend ChatController logic)
+  isAdmin = false;
 
-  quickActions = [
+  // Quick actions - filtered based on role
+  quickActions: { label: string; message: string }[] = [];
+
+  private readonly adminQuickActions = [
     { label: 'List Products', message: 'Liste tous les produits disponibles' },
     { label: 'List Clients', message: 'Liste tous les clients' },
+    { label: 'List Orders', message: 'Liste toutes les commandes' },
     { label: 'Search Product', message: 'Donne moi le produit avec ID 1' },
     { label: 'Summary', message: 'Donne moi un résumé des produits et clients' }
+  ];
+
+  private readonly userQuickActions = [
+    { label: 'List Products', message: 'Liste tous les produits disponibles' },
+    { label: 'Search Product', message: 'Donne moi le produit avec ID 1' }
   ];
 
   constructor(
@@ -32,6 +44,13 @@ export class ChatComponent implements AfterViewChecked {
     private readonly authService: AuthService,
     private readonly router: Router
   ) {}
+
+  ngOnInit(): void {
+    // Check admin status on init (mirrors backend isAdmin() check)
+    this.isAdmin = this.authService.isAdmin();
+    // Set quick actions based on role (mirrors backend USER_PERMISSIONS)
+    this.quickActions = this.isAdmin ? this.adminQuickActions : this.userQuickActions;
+  }
 
   ngAfterViewChecked(): void {
     this.scrollToBottom();

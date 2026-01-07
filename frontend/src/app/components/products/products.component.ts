@@ -19,6 +19,9 @@ export class ProductsComponent implements OnInit {
   showModal = false;
   editMode = false;
   currentProduct: Product = { nom: '', prix: 0 };
+  
+  // Role-based access control (mirrors backend ChatController logic)
+  isAdmin = false;
 
   constructor(
     private readonly productService: ProductService,
@@ -27,6 +30,8 @@ export class ProductsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Check admin status on init (mirrors backend isAdmin() check)
+    this.isAdmin = this.authService.isAdmin();
     this.loadProducts();
   }
 
@@ -44,13 +49,29 @@ export class ProductsComponent implements OnInit {
     });
   }
 
+  /**
+   * Open create modal - ADMIN only
+   * Mirrors backend Intent.CREATE_PRODUCT permission
+   */
   openCreateModal(): void {
+    if (!this.isAdmin) {
+      this.error = '🚫 Accès refusé - Vous n\'avez pas les droits nécessaires pour créer un produit.';
+      return;
+    }
     this.editMode = false;
     this.currentProduct = { nom: '', prix: 0 };
     this.showModal = true;
   }
 
+  /**
+   * Open edit modal - ADMIN only
+   * Mirrors backend Intent.UPDATE_PRODUCT permission
+   */
   openEditModal(product: Product): void {
+    if (!this.isAdmin) {
+      this.error = '🚫 Accès refusé - Vous n\'avez pas les droits nécessaires pour modifier un produit.';
+      return;
+    }
     this.editMode = true;
     this.currentProduct = { ...product };
     this.showModal = true;
@@ -61,7 +82,16 @@ export class ProductsComponent implements OnInit {
     this.currentProduct = { nom: '', prix: 0 };
   }
 
+  /**
+   * Save product (create or update) - ADMIN only
+   * Mirrors backend Intent.CREATE_PRODUCT and Intent.UPDATE_PRODUCT permissions
+   */
   saveProduct(): void {
+    if (!this.isAdmin) {
+      this.error = '🚫 Accès refusé - Vous n\'avez pas les droits nécessaires pour effectuer cette action.';
+      return;
+    }
+    
     if (this.editMode && this.currentProduct.id) {
       this.productService.updateProduct(this.currentProduct.id, this.currentProduct).subscribe({
         next: () => {
@@ -81,7 +111,16 @@ export class ProductsComponent implements OnInit {
     }
   }
 
+  /**
+   * Delete product - ADMIN only
+   * Mirrors backend Intent.DELETE_PRODUCT permission
+   */
   deleteProduct(id: number): void {
+    if (!this.isAdmin) {
+      this.error = '🚫 Accès refusé - Vous n\'avez pas les droits nécessaires pour supprimer un produit.';
+      return;
+    }
+    
     if (confirm('Êtes-vous sûr de vouloir supprimer ce produit?')) {
       this.productService.deleteProduct(id).subscribe({
         next: () => this.loadProducts(),

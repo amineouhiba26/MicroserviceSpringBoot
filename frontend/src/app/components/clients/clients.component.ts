@@ -19,6 +19,9 @@ export class ClientsComponent implements OnInit {
   showModal = false;
   editMode = false;
   currentClient: Client = { nom: '', prenom: '', email: '' };
+  
+  // Role-based access control (mirrors backend ChatController logic)
+  isAdmin = false;
 
   constructor(
     private readonly clientService: ClientService,
@@ -27,6 +30,8 @@ export class ClientsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Check admin status on init (mirrors backend isAdmin() check)
+    this.isAdmin = this.authService.isAdmin();
     this.loadClients();
   }
 
@@ -44,13 +49,28 @@ export class ClientsComponent implements OnInit {
     });
   }
 
+  /**
+   * Open create modal - ADMIN only
+   * Mirrors backend Intent.LIST_CLIENTS permission (admin only)
+   */
   openCreateModal(): void {
+    if (!this.isAdmin) {
+      this.error = '🚫 Accès refusé - Vous n\'avez pas les droits nécessaires pour créer un client.';
+      return;
+    }
     this.editMode = false;
     this.currentClient = { nom: '', prenom: '', email: '' };
     this.showModal = true;
   }
 
+  /**
+   * Open edit modal - ADMIN only
+   */
   openEditModal(client: Client): void {
+    if (!this.isAdmin) {
+      this.error = '🚫 Accès refusé - Vous n\'avez pas les droits nécessaires pour modifier un client.';
+      return;
+    }
     this.editMode = true;
     this.currentClient = { ...client };
     this.showModal = true;
@@ -61,7 +81,15 @@ export class ClientsComponent implements OnInit {
     this.currentClient = { nom: '', prenom: '', email: '' };
   }
 
+  /**
+   * Save client (create or update) - ADMIN only
+   */
   saveClient(): void {
+    if (!this.isAdmin) {
+      this.error = '🚫 Accès refusé - Vous n\'avez pas les droits nécessaires pour effectuer cette action.';
+      return;
+    }
+    
     if (this.editMode && this.currentClient.id) {
       this.clientService.updateClient(this.currentClient.id, this.currentClient).subscribe({
         next: () => {
@@ -81,7 +109,15 @@ export class ClientsComponent implements OnInit {
     }
   }
 
+  /**
+   * Delete client - ADMIN only
+   */
   deleteClient(id: number): void {
+    if (!this.isAdmin) {
+      this.error = '🚫 Accès refusé - Vous n\'avez pas les droits nécessaires pour supprimer un client.';
+      return;
+    }
+    
     if (confirm('Êtes-vous sûr de vouloir supprimer ce client?')) {
       this.clientService.deleteClient(id).subscribe({
         next: () => this.loadClients(),
