@@ -33,31 +33,7 @@ public class CommandeServiceApplication {
 			ClientRestClient clientRestClient
 	) {
 		return args -> {
-			/*
-			List<Client> clients = clientRestClient.getClients();
-			List<Produit> produits = productRestClient.getProduits();
-
-			if (clients.isEmpty() || produits.isEmpty()) {
-				System.out.println("Aucun client ou produit trouvé. Impossible d'initialiser les commandes.");
-				return;
-			}
-
-			clients.forEach(client -> {
-				Commande commande = new Commande();
-				commande.setIdClient(client.getId());
-				commande.setDate(new Date());
-				Commande savedCommande = commandeRepository.save(commande);
-
-				produits.forEach(produit -> {
-					ProductItem productItem = new ProductItem();
-					productItem.setIdProduit(produit.getId());
-					productItem.setCommande(savedCommande);
-					productItem.setPrix(produit.getPrix()); 
-					productItem.setQuantite(1 + (int) (Math.random() * 10)); 
-					productItemRepository.save(productItem);
-				});
-			});
-			*/
+			
 		};
 	}
 }
