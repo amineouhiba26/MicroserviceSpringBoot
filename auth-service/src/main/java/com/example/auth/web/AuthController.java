@@ -36,7 +36,7 @@ public class AuthController {
                 new UsernamePasswordAuthenticationToken(username, password)
         );
         User user = (User) authentication.getPrincipal();
-        String algorithm = "secret12345678901234567890123456789012"; // Must be long enough for HS256
+        String algorithm = "secret12345678901234567890123456789012"; 
         
         String jwtAccessToken = Jwts.builder()
                 .setSubject(user.getUsername())

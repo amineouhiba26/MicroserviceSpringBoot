@@ -21,10 +21,9 @@ import java.util.Map;
 @RestController
 public class ChatController {
 
-    /* ================= SECURITY ================= */
 
     private static final String JWT_SECRET =
-            "secret12345678901234567890123456789012"; // move to env later
+            "secret12345678901234567890123456789012"; 
 
     private boolean isAdmin(String authHeader) {
         if (authHeader == null || !authHeader.startsWith("Bearer ")) {
@@ -60,7 +59,6 @@ public class ChatController {
         }
     }
 
-    /* ================= INTENT ================= */
 
     enum Intent {
         LIST_PRODUCTS,
@@ -76,7 +74,6 @@ public class ChatController {
     private Intent classifyIntent(String message) {
         String m = message.toLowerCase();
 
-        // Product-related intents
         if (m.contains("product") || m.contains("produit") || m.contains("produits")) {
             if (m.contains("create") || m.contains("add") || m.contains("créer") || m.contains("ajouter")) return Intent.CREATE_PRODUCT;
             if (m.contains("update") || m.contains("modify") || m.contains("modifier")) return Intent.UPDATE_PRODUCT;
@@ -85,10 +82,8 @@ public class ChatController {
             return Intent.LIST_PRODUCTS;
         }
 
-        // Client-related intents
         if (m.contains("client")) return Intent.LIST_CLIENTS;
 
-        // Order-related intents
         if (m.contains("order") || m.contains("commande") || m.contains("commandes") || m.contains("ordre") || m.contains("ordres")) return Intent.LIST_ORDERS;
 
         return Intent.UNKNOWN;
@@ -105,7 +100,6 @@ public class ChatController {
         return USER_PERMISSIONS.getOrDefault(intent, false);
     }
 
-    /* ================= PROMPTS ================= */
 
     private static final String ADMIN_PROMPT = """
         You display business data to administrators.
@@ -131,7 +125,6 @@ public class ChatController {
             "🚫 Accès refusé\n\n" +
             "Vous n'avez pas les droits nécessaires pour effectuer cette action.";
 
-    /* ================= CHAT CLIENTS ================= */
 
     private final ChatClient chatClient;
 
@@ -153,7 +146,6 @@ public class ChatController {
         return MessageChatMemoryAdvisor.builder(memory).build();
     }
 
-    /* ================= ENDPOINT ================= */
 
     @GetMapping("/chat")
     public String chat(@RequestParam String message,
